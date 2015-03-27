@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Bootstrap as our UI framework of choice
 gem 'bootstrap-sass', '~> 3.3.4'
 
+# Easily add 'active' classes to links
+gem 'active_link_to'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
