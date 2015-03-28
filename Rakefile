@@ -4,3 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+task :promote, [:email] => :environment do |t, args|
+  User.find_by(email: args[:email]).update_attribute('admin', true)
+end
