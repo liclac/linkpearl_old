@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Bootstrap as our UI framework of choice
 gem 'bootstrap-sass', '~> 3.3.4'
+# Helper to generate bootstrap forms
+gem 'bootstrap_form'
 # Easily add 'active' classes to links
 gem 'active_link_to'
 
