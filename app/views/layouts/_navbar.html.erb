@@ -35,6 +35,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Me <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <%= active_link_to 'Edit Profile', edit_user_registration_path, :wrap_tag => 'li' %>
+            <% if current_user.admin? %>
+            <%= active_link_to 'Admin Dashboard', rails_admin.dashboard_path, :wrap_tag => 'li' %>
+            <% end %>
             <li class="divider"></li>
             <%= active_link_to 'Logout', destroy_user_session_path, :method => :delete, :wrap_tag => 'li' %>
           </ul>

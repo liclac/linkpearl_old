@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328105551) do
+ActiveRecord::Schema.define(version: 20150328113929) do
 
   create_table "characters", force: :cascade do |t|
     t.integer  "lodestone_id", limit: 8
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150328105551) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
