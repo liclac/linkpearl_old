@@ -36,7 +36,7 @@
           <ul class="dropdown-menu" role="menu">
             <%= active_link_to 'Edit Profile', edit_user_registration_path, :wrap_tag => 'li' %>
             <li class="divider"></li>
-            <%= active_link_to 'Logout', destroy_user_session_path, :wrap_tag => 'li' %>
+            <%= active_link_to 'Logout', destroy_user_session_path, :method => :delete, :wrap_tag => 'li' %>
           </ul>
         </li>
         <% end %>
