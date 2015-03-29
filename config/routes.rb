@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   
+  # Characters
+  get 'c/import' => 'character#import', as: 'character_import'
+  post 'c/import' => 'character#verify', as: 'character_verify'
+  get 'c/import/:id' => 'characters#invalid', as: 'character_invalid'
+  
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
