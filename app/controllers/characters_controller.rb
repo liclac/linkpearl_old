@@ -15,6 +15,7 @@ class CharactersController < ApplicationController
     ensure_token
     
     char = Character.new
+    char.user = current_user
     char.lodestone_id = params[:lodestone_id]
     char.lodestone_update
     
