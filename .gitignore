@@ -18,3 +18,5 @@
 
 # Junk
 *.sublime-workspace
+.vagrant
+
