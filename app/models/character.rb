@@ -1,6 +1,10 @@
 class Character < ActiveRecord::Base
   belongs_to :user
   
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+  
   def lodestone_update
     headers = {
       'User-Agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18"
