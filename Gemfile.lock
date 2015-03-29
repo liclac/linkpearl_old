@@ -208,6 +208,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   rails (= 4.2.1)
   rails_admin
   sass-rails (~> 5.0)

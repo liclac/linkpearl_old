@@ -1,0 +1,21 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Lodestone Error!</h3>
+    </div>
+    <div class="panel-body">
+      <p><strong>Couldn't contact the Lodestone.</strong></p>
+      <p>
+        Is the whole lodestone down?<br />
+        Maybe it was just a temporary hiccup?<br />
+        Did Yoshi-P suddenly drop the other moon too?
+      </p>
+      <hr />
+      <%= bootstrap_form_tag do |f| %>
+        <%= f.hidden_field :lodestone_id, value: params[:lodestone_id] %>
+        <%= f.submit "Stop being overdramatic, try again", class: 'btn btn-danger btn-block' %>
+        <%= link_to "Dammit, we're out of moons", 'http://i.imgur.com/iwZiRhu.jpg', target: '_blank', class: 'btn btn-default btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>

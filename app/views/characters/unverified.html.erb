@@ -1,0 +1,21 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Verification Failed!</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        We checked this character, and couldn't find your verification token, did you enter the right ID?
+      </p>
+      <ul class="nav nav-pills nav-stacked">
+        <li><%= link_to "#{@data['first_name']} #{@data['last_name']} on #{@data['world']}", @link, target: '_blank' %></li>
+      </ul>
+      <hr />
+      <p>If this is the correct character, make sure to put this somewhere in the <strong>Character Profile</strong> field on their page:</p>
+      <pre><%= @token %></pre>
+      <hr />
+      <%= link_to "It's there now, try again!", characters_verify_path(:lodestone_id => params[:lodestone_id]), class: 'btn btn-primary btn-block' %>
+      <%= link_to "Oops, entered the wrong ID", characters_import_path, class: 'btn btn-default btn-block' %>
+    </div>
+  </div>
+</div>

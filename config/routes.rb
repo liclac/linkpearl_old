@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   root 'home#index'
   
   # Characters
-  get 'c/import' => 'character#import', as: 'character_import'
-  post 'c/import' => 'character#verify', as: 'character_verify'
-  get 'c/import/:id' => 'characters#invalid', as: 'character_invalid'
+  resources :characters, path: '/c', only: ['edit', 'show', 'update', 'destroy']
+  
+  get 'c/import' => 'characters#import', as: 'characters_import'
+  post 'c/import' => 'characters#redirect_to_verify', as: 'characters_redirect_to_verify'
+  get 'c/import/:lodestone_id' => 'characters#unverified', as: 'characters_unverified'
+  get 'c/import/:lodestone_id/verify' => 'characters#verify', as: 'characters_verify'
   
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

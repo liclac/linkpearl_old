@@ -1,0 +1,23 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Import from Lodestone</h3>
+    </div>
+    <div class="panel-body">
+      <ol>
+        <li>
+          <p>Log in to the Lodestone, and add the following somewhere in your character's <em>Character Profile</em> field:</p>
+          <pre><%= @token %></pre>
+        </li>
+        <li>
+          <p>Enter your Lodestone ID below; this is the number at the end of the URL to your character profile:</p>
+          <p><code>.../lodestone/character/YOUR_ID_HERE/</code></p>
+        </li>
+      </ol>
+      <hr />
+      <%= bootstrap_form_tag url: characters_redirect_to_verify_path do |f| %>
+        <%= f.text_field :lodestone_id, label: "Lodestone ID", autofocus: true, append: f.submit("Import", class: 'btn btn-primary btn-block') %>
+      <% end %>
+    </div>
+  </div>
+</div>
