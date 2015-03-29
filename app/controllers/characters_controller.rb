@@ -2,6 +2,8 @@ require 'securerandom'
 require 'open-uri'
 
 class CharactersController < ApplicationController
+  before_action :authenticate_user!, :except => :show
+  
   def import
     ensure_token
   end
