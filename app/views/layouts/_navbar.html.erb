@@ -13,9 +13,12 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
         <%= active_link_to 'Home', root_path, :active => [['home'], []], :wrap_tag => 'li' %>
-        <li class="dropdown <%= 'active' if params[:controller] == 'character' %>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <li class="dropdown <%= 'active' if params[:controller] == 'characters' %>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Characters <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            <% for character in current_user.characters %>
+              <%= active_link_to character.name, character, :wrap_tag => 'li' %>
+            <% end %>
             <li class="divider"></li>
             <%= active_link_to 'Import', characters_import_path, :wrap_tag => 'li' %>
           </ul>
