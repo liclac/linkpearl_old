@@ -47,6 +47,10 @@ class CharactersController < ApplicationController
     @link = lodestone_link(params[:lodestone_id])
   end
   
+  def show
+    @character = Character.find_by_lodestone_id(params[:id])
+  end
+  
   protected
   def ensure_token
     session[:char_verify_token] = SecureRandom.hex unless session.include? :char_verify_token

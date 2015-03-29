@@ -15,4 +15,8 @@ class Character < ActiveRecord::Base
   def lodestone_link
     return "http://na.finalfantasyxiv.com/lodestone/character/#{lodestone_id}/"
   end
+  
+  def to_param
+    self.lodestone_id.to_s
+  end
 end
