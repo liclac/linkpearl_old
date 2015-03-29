@@ -16,10 +16,12 @@
         <li class="dropdown <%= 'active' if params[:controller] == 'characters' %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Characters <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <% for character in current_user.characters %>
-              <%= active_link_to character.name, character, :wrap_tag => 'li' %>
+            <% if current_user and current_user.try(:characters) %>
+              <% for character in current_user.characters %>
+                <%= active_link_to character.name, character, :wrap_tag => 'li' %>
+              <% end %>
+              <li class="divider"></li>
             <% end %>
-            <li class="divider"></li>
             <%= active_link_to 'Import', characters_import_path, :wrap_tag => 'li' %>
           </ul>
         </li>
