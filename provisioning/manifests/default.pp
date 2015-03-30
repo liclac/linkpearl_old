@@ -34,6 +34,17 @@ postgresql::server::database_grant { 'vagrant':
   role => 'vagrant',
 }
 
+# Install NodeJS and npm
+class { 'nodejs':
+    manage_repo => true,
+    node_pkg => 'nodejs',
+    npm_pkg => 'npm',
+    dev_pkg     => 'nodejs-dev',
+    dev_package => true,
+}
+package { 'nodejs-legacy': ensure => present }
+package { 'npm': ensure => present }
+
 # Install Ruby and gem build dependencies
 package { 'libssl-dev': ensure => present }
 package { 'libsqlite3-dev': ensure => present }

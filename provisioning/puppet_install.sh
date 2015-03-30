@@ -10,6 +10,5 @@ sed -i 's/^templatedir/#templatedir/' /etc/puppet/puppet.conf
 puppet module install puppetlabs-apt
 puppet module install puppetlabs-git
 puppet module install puppetlabs-postgresql
-# puppet module install puppetlabs-ruby
-# puppet module install alup-rbenv
+puppet module install puppetlabs-nodejs
 puppet module install jdowning-rbenv
