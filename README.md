@@ -27,7 +27,7 @@ Set up the application:
 Run a development server:  
 (the -b is needed in a VM!)
 
-    ./bin/rails s -b 0.0.0.0
+    rails s -b 0.0.0.0
 
 Access it at <http://localhost:3000>, and register an account.  
 Then promote yourself to admin:
