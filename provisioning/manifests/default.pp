@@ -34,18 +34,9 @@ postgresql::server::database_grant { 'vagrant':
   role => 'vagrant',
 }
 
-# Install Ruby build dependencies
-package { 'libssl-dev': ensure => present}
-
-# Install Ruby
-# apt::ppa { 'ppa:brightbox/ruby-ng': } ~>
-# class { 'ruby':
-#   ruby_package     => 'ruby2.1',
-#   # rubygems_package => 'rubygems',
-#   # gems_version     => 'latest',
-# }
-# class { 'ruby::dev': }
-# class { 'ruby::bundle': cwd => '/vagrant' }
+# Install Ruby and gem build dependencies
+package { 'libssl-dev': ensure => present }
+package { 'libsqlite3-dev': ensure => present }
 
 class { 'rbenv': }
 rbenv::plugin { 'sstephenson/ruby-build': }
