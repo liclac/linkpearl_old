@@ -39,7 +39,7 @@ class { 'nodejs':
     manage_repo => true,
     node_pkg => 'nodejs',
     npm_pkg => 'npm',
-    dev_pkg     => 'nodejs-dev',
+    dev_pkg => 'nodejs-dev',
     dev_package => true,
 }
 package { 'nodejs-legacy': ensure => present }
