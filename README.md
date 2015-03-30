@@ -7,7 +7,7 @@ Requirements
 ------------
 
 * [Vagrant](http://vagrantup.com)
-* [VirtualBox](https://virtualbox.org), or VMware [Fusion](http://vmware.com/products/fusion/) (mac)/[Workstation](http://vmware.com/products/workstation/) (windows, linux) + the [relevant vagrant plugin](http://www.vagrantup.com/vmware)
+* [VirtualBox](https://virtualbox.org), or VMware [Fusion](http://vmware.com/products/fusion/) (mac) / [Workstation](http://vmware.com/products/workstation/) (windows, linux) + the [this](http://www.vagrantup.com/vmware)
 
 Installation
 ------------
