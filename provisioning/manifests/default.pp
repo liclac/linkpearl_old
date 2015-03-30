@@ -20,7 +20,7 @@ class { 'postgresql::server': }
 package { 'postgresql-server-dev-all': ensure => present }
 
 # Create the linkpearl database
-postgresql::server::db { 'linkpearl':
+postgresql::server::db { 'linkpearl_development':
     user => 'linkpearl',
     password => 'linkpearl',
 }
@@ -30,7 +30,7 @@ postgresql::server::db { 'linkpearl':
 postgresql::server::role { 'vagrant': superuser => true }
 postgresql::server::database_grant { 'vagrant':
   privilege => 'ALL',
-  db => 'linkpearl',
+  db => 'linkpearl_development',
   role => 'vagrant',
 }
 
