@@ -20,3 +20,6 @@
 *.sublime-workspace
 .vagrant
 
+# Local data that should not be committed
+/.env
+/public/assets
