@@ -29,11 +29,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-gem 'unicorn'
+# gem 'unicorn'
 # Also use it as a development server
 # gem 'unicorn-rails'
 # I'm gonna use Thin until I get Unicorn working properly
-# gem 'thin'
+gem 'thin'
 
 # Use Bootstrap as our UI framework of choice
 gem 'bootstrap-sass', '~> 3.3.4'
