@@ -1,3 +1,23 @@
 <div class="page-header">
   <h1><%= @group.name %></h1>
 </div>
+
+<div class="col-md-3 col-md-push-9">
+  <ul class="nav nav-pills nav-stacked">
+    <li><%= link_to "Edit", edit_group_path(@group) %></li>
+  </ul>
+</div>
+
+<div class="col-md-9 col-md-pull-3">
+  <% if @group.message %>
+    <h3>Message</h3>
+    <p><%= @group.message %></p>
+  <% end %>
+  
+  <h3>Members</h3>
+  <ul class="list-group">
+    <% @group.characters.each do |character| %>
+      <%= link_to character.name, character, class: 'list-group-item' %>
+    <% end %>
+  </ul>
+</div>
