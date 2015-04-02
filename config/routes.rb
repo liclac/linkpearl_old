@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'c/import/:lodestone_id/verify' => 'characters#verify', as: 'characters_verify'
   resources :characters, path: '/c', only: ['edit', 'show', 'update', 'destroy']
   
+  # Groups
+  resources :groups, path: '/g'
+  
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

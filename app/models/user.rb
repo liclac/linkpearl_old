@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :characters
+  has_many :groups, :through => :characters
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
