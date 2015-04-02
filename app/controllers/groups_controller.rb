@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, :except => :show
+  before_action :set_character, :only => [:add, :remove]
   load_and_authorize_resource
   
   def new
@@ -31,22 +32,20 @@ class GroupsController < ApplicationController
   end
   
   def add
-    @character = Character.find_by_lodestone_id(params[:lodestone_id])
-    return head(:forbidden) unless @character.user == current_user
-    
     @group.characters.push @character
     redirect_to @group
   end
   
   def remove
-    @character = Character.find_by_lodestone_id(params[:lodestone_id])
-    return head(:forbidden) unless @character.user == current_user
-    
     @group.characters.destroy @character
     redirect_to @group
   end
   
   private
+  def set_character
+    @character = Character.find_by_lodestone_id!(params[:lodestone_id])
+  end
+  
   def group_params
     params.require(:group).permit(:name, :message)
   end
