@@ -17,7 +17,6 @@
   <h3>Members</h3>
   <div class="list-group">
     <% @group.characters.each do |character| %>
-      <!--<%= link_to character.name, character, class: 'list-group-item' %>-->
       <div class="list-group-item">
         <div class="clearfix">
           <h4 class="list-group-item-heading pull-left"><%= character.name %></h4>
@@ -36,6 +35,6 @@
         <% end %>
       </div>
     </div>
-    <a href="#" class="list-group-item" data-toggle="collapse" data-target="#add-form-item-container"><small class="text-muted">Add Member</small></a>
+    <a href="#add-form-item-container" class="list-group-item" data-toggle="collapse"><small class="text-muted">Add Member</small></a>
   </div>
 </div>
