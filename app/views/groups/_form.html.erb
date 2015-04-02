@@ -1,8 +1,8 @@
-<%= bootstrap_form_for :group, url: groups_path do |f| %>
+<%= bootstrap_form_for @group do |f| %>
   <%= f.text_field :name, autofocus: true %>
   <%= f.text_area :message, help: "Only members will be able to see this message.", rows: 7 %>
   
-  <% if not @group %>
+  <% if @group.new_record? %>
     <%= f.form_group do %>
       <%= label_tag "Founder" %>
       <%= select_tag :founder, options_for_select(current_user.characters.collect {|c| [c.name, c.id]}), class: 'form-control' %>
