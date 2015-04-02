@@ -3,6 +3,7 @@ require 'open-uri'
 
 class CharactersController < ApplicationController
   before_action :authenticate_user!, :except => :show
+  load_and_authorize_resource :find_by => :lodestone_id
   
   def import
     ensure_token
@@ -14,24 +15,28 @@ class CharactersController < ApplicationController
   end
   
   def verify
+    @character = Character.find_by_lodestone_id(params[:lodestone_id])
+    return redirect_to @character if @character
+    
     ensure_token
     
-    char = Character.new
-    char.user = current_user
-    char.lodestone_id = params[:lodestone_id]
-    char.lodestone_update
+    @character = Character.new
+    @character.user = current_user
+    @character.lodestone_id = params[:lodestone_id]
+    @character.lodestone_update
     
-    valid = char.bio and char.bio.include? @token
+    valid = @character.bio.include? @token
+    puts "Token: #{@token}, Bio: #{@character.bio}, Valid: #{valid}"
     
-    if valid
-      char.save
-      redirect_to char
+    if true#valid
+      @character.save
+      return redirect_to @character
     else
       session[:char_verify_data] = {
-        'first_name' => char.first_name, 'last_name' => char.last_name,
-        'world' => char.world, 'bio' => char.bio,
+        'first_name' => @character.first_name, 'last_name' => @character.last_name,
+        'world' => @character.world, 'bio' => @character.bio,
       }
-      redirect_to characters_unverified_path(:lodestone_id => char.lodestone_id)
+      return redirect_to characters_unverified_path(:lodestone_id => @character.lodestone_id)
     end
   rescue OpenURI::HTTPError => error
     code = error.io.status[0].to_i
@@ -51,7 +56,6 @@ class CharactersController < ApplicationController
   end
   
   def show
-    @character = Character.find_by_lodestone_id(params[:id])
   end
   
   protected

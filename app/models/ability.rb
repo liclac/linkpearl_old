@@ -5,14 +5,12 @@ class Ability
     # If there is no user, fall back to an empty guest user
     user ||= User.new
     
-    # Public permissions
-    can :read, :all
+    can :read, Character
+    can :manage, Character, :user_id => user.id
     
-    # Admin permissions
-    if user.admin?
-      can :access, :rails_admin
-      can :dashboard
-      can :manage, :all
+    can :create, Group
+    can :manage, Group do |group|
+        group.characters.exists? :user_id => user.id
     end
     
     # Define abilities for the passed in user here. For example:

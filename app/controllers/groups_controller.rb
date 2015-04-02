@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, :except => :show
+  load_and_authorize_resource
   
   def new
-    @group = Group.new
   end
   
   def create
@@ -17,12 +17,9 @@ class GroupsController < ApplicationController
   end
   
   def edit
-    @group = Group.find(params[:id])
   end
   
   def update
-    @group = Group.find(params[:id])
-    
     if @group.update(group_params)
       redirect_to @group
     else
@@ -31,11 +28,9 @@ class GroupsController < ApplicationController
   end
   
   def show
-    @group = Group.find(params[:id])
   end
   
   def add
-    @group = Group.find(params[:id])
     @character = Character.find_by_lodestone_id(params[:lodestone_id])
     return head(:forbidden) unless @character.user == current_user
     
@@ -44,7 +39,6 @@ class GroupsController < ApplicationController
   end
   
   def remove
-    @group = Group.find(params[:id])
     @character = Character.find_by_lodestone_id(params[:lodestone_id])
     return head(:forbidden) unless @character.user == current_user
     

@@ -45,7 +45,7 @@ gem 'active_link_to'
 # Authentication, ho!
 gem 'devise'
 # And authorization too!
-gem 'cancan'
+gem 'cancancan', '~> 1.10'
 
 # Wanna scrape HTML
 gem 'nokogiri'
