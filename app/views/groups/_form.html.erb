@@ -5,7 +5,7 @@
   <% if @group.new_record? %>
     <%= f.form_group do %>
       <%= label_tag "Founder" %>
-      <%= select_tag :founder, options_for_select(current_user.characters.collect {|c| [c.name, c.id]}), class: 'form-control' %>
+      <%= select_tag :founder, options_for_select(current_user.characters.collect {|c| [c.name, c.lodestone_id]}), class: 'form-control' %>
     <% end %>
   <% end %>
   

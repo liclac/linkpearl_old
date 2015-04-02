@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @founder = Character.find(params[:founder])
+    @founder = Character.find_by_lodestone_id(params[:founder])
     head :forbidden unless @founder and @founder.user == current_user
     
     @group = Group.new(group_params)
