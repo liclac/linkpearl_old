@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   resources :characters, path: '/c', only: ['edit', 'show', 'update', 'destroy']
   
   # Groups
-  resources :groups, path: '/g'
+  resources :groups, path: '/g' do
+    member do
+      post 'members' => 'groups#add', as: 'add_to'
+      delete 'members/:lodestone_id' => 'groups#remove', as: 'remove_from'
+    end
+  end
   
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

@@ -22,5 +22,8 @@ module Linkpearl
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # Allow web console in the Vagrant VM
+    config.web_console.whitelisted_ips = '172.16.228.0/24'
   end
 end

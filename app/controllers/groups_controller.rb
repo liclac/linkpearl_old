@@ -34,6 +34,24 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
   
+  def add
+    @group = Group.find(params[:id])
+    @character = Character.find_by_lodestone_id(params[:lodestone_id])
+    return head(:forbidden) unless @character.user == current_user
+    
+    @group.characters.push @character
+    redirect_to @group
+  end
+  
+  def remove
+    @group = Group.find(params[:id])
+    @character = Character.find_by_lodestone_id(params[:lodestone_id])
+    return head(:forbidden) unless @character.user == current_user
+    
+    @group.characters.destroy @character
+    redirect_to @group
+  end
+  
   private
   def group_params
     params.require(:group).permit(:name, :message)

@@ -15,9 +15,27 @@
   <% end %>
   
   <h3>Members</h3>
-  <ul class="list-group">
+  <div class="list-group">
     <% @group.characters.each do |character| %>
-      <%= link_to character.name, character, class: 'list-group-item' %>
+      <!--<%= link_to character.name, character, class: 'list-group-item' %>-->
+      <div class="list-group-item">
+        <div class="clearfix">
+          <h4 class="list-group-item-heading pull-left"><%= character.name %></h4>
+          <div class="pull-right">
+            <%= bootstrap_form_tag url: remove_from_group_path(@group, character.lodestone_id), method: :delete, html: { 'data-confirm' => "Are you sure you want to remove this character from the group?\n\nNote: Users with no characters in the group may no longer access it" } do |f| %>
+              <%= f.submit "Remove", class: 'btn btn-danger btn-xs' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+    <div class="collapse" id="add-form-item-container">
+      <div class="list-group-item" style="border-radius:0; border-bottom: none;">
+        <%= bootstrap_form_tag url: add_to_group_path(@group) do |f| %>
+          <%= f.text_field :lodestone_id, label: "Character", placeholder: "Lodestone ID of the character to add", append: f.primary("Add") %>
+        <% end %>
+      </div>
+    </div>
+    <a href="#" class="list-group-item" data-toggle="collapse" data-target="#add-form-item-container"><small class="text-muted">Add Member</small></a>
+  </div>
 </div>
