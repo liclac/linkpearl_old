@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
   end
   
   def add
-    @group.characters.push @character
+    @group.characters.push @character unless @group.characters.exists? @character
     redirect_to @group
   end
   
