@@ -28,6 +28,11 @@ class GroupsController < ApplicationController
     end
   end
   
+  def destroy
+    @group.destroy
+    redirect_to root_path, notice: "The group has been terminated with extreme prejudice."
+  end
+  
   def show
   end
   
