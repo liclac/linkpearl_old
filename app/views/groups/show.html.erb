@@ -38,3 +38,15 @@
     <a href="#add-form-item-container" class="list-group-item" data-toggle="collapse"><small class="text-muted">Add Member</small></a>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#lodestone_id')
+    .attr('placeholder', "Select the character you wish to add")
+    .select2({
+    data: [
+      <% Character.all.each do |character| %>
+      {'id': <%= character.lodestone_id %>, 'text': "<%= character.name.html_safe %>"},
+      <% end %>
+    ],
+  });
+</script>

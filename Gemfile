@@ -56,6 +56,12 @@ gem 'rails_admin'
 # Environment variables in a file
 gem 'dotenv-rails'
 
+# Bower packages, yay
+source 'https://rails-assets.org' do
+  gem 'rails-assets-select2', '~> 3.5.2'
+  gem 'rails-assets-select2-bootstrap-css'
+end
+
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano-rails'
