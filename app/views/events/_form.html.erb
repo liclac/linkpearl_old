@@ -1,6 +1,6 @@
 <%= bootstrap_form_for @event do |f| %>
   <%= f.text_field :name, autofocus: true %>
-  <%= f.text_field :time, placeholder: "HH:mm", label: "Time (UTC)" %>
+  <%= f.text_field :time, placeholder: "HH:mm", label: "Time (UTC)", help: "Times will be auto-adjusted when displayed, but currently have to be entered in UTC." %>
   
   <%= f.form_group do %>
     <%= f.primary %>
