@@ -64,7 +64,13 @@
             <tr>
               <th><%= character.name %></th>
               <% 7.times do %>
-                <td>&nbsp;</td>
+                <% if character.user == current_user && rand(0..1) == 1 %>
+                <td class="text-center">?</td>
+                <% elsif rand(0..2) != 0 %>
+                <td class="text-center success text-success">&#x2713;</td>
+                <% else %>
+                <td class="text-center danger text-danger">&#x2717;</td>
+                <% end %>
               <% end %>
             </tr>
           <% end %>
