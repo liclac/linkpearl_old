@@ -58,8 +58,12 @@ gem 'dotenv-rails'
 
 # Bower packages, yay
 source 'https://rails-assets.org' do
+  # Fancy select boxes
   gem 'rails-assets-select2', '~> 3.5.2'
   gem 'rails-assets-select2-bootstrap-css'
+  
+  # Moment.js, sane date/time handling
+  gem 'rails-assets-moment'
 end
 
 group :development do

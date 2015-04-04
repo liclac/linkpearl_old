@@ -39,12 +39,12 @@
     <a href="#add-form-item-container" class="list-group-item" data-toggle="collapse"><small class="text-muted">Add Member</small></a>
   </div>
   
-  <h3>Schedule</h3>
+  <h3>Schedule <small id="timezones-adjusted" style="display:none;">&mdash;&nbsp;Times adjusted for your timezone</small></h3>
   <% @group.events.each do |event| %>
     <table class="table">
       <thead>
         <tr>
-          <td><%= event.time.strftime("%H:%M %Z") %></td>
+          <td data-adjust="<%= event.time %>" data-adjust-format="LT"><%= event.time.strftime("%H:%M %Z") %></td>
           <th>Monday</th>
           <th>Tuesday</th>
           <th>Wednesday</th>
@@ -78,4 +78,6 @@
       <% end %>
     ],
   });
+  
+  $('#timezones-adjusted').show();
 </script>
