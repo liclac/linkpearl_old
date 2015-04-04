@@ -42,8 +42,9 @@
   <h3>Schedule <small id="timezones-adjusted" style="display:none;">&mdash;&nbsp;Times adjusted for your timezone</small></h3>
   <% @group.events.each do |event| %>
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= event.name %></h3>
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left"><%= event.name %></h3>
+        <%= link_to "Edit", edit_event_path(event), class: "btn btn-default btn-xs pull-right" %>
       </div>
       <table class="table">
         <thead>
