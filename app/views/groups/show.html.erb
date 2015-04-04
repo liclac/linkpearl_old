@@ -41,30 +41,35 @@
   
   <h3>Schedule <small id="timezones-adjusted" style="display:none;">&mdash;&nbsp;Times adjusted for your timezone</small></h3>
   <% @group.events.each do |event| %>
-    <table class="table">
-      <thead>
-        <tr>
-          <td data-adjust="<%= event.time %>" data-adjust-format="LT"><%= event.time.strftime("%H:%M %Z") %></td>
-          <th>M<span class="hidden-xs">on<span class="hidden-sm">day</span></span></th>
-          <th>T<span class="hidden-xs">ue<span class="hidden-sm">sday</span></span></th>
-          <th>W<span class="hidden-xs">ed<span class="hidden-sm">nesday</span></span></th>
-          <th>T<span class="hidden-xs">hu<span class="hidden-sm">rsday</span></span></th>
-          <th>F<span class="hidden-xs">ri<span class="hidden-sm">day</span></span></th>
-          <th>S<span class="hidden-xs">at<span class="hidden-sm">urday</span></span></th>
-          <th>S<span class="hidden-xs">un<span class="hidden-sm">day</span></span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @group.characters.each do |character| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= event.name %></h3>
+      </div>
+      <table class="table">
+        <thead>
           <tr>
-            <th><%= character.name %></th>
-            <% 7.times do %>
-              <td>&nbsp;</td>
-            <% end %>
+            <td><span class="text-muted" data-adjust="<%= event.time %>" data-adjust-format="LT"><%= event.time.strftime("%H:%M %Z") %></span></td>
+            <th>M<span class="hidden-xs">on<span class="hidden-sm">day</span></span></th>
+            <th>T<span class="hidden-xs">ue<span class="hidden-sm">sday</span></span></th>
+            <th>W<span class="hidden-xs">ed<span class="hidden-sm">nesday</span></span></th>
+            <th>T<span class="hidden-xs">hu<span class="hidden-sm">rsday</span></span></th>
+            <th>F<span class="hidden-xs">ri<span class="hidden-sm">day</span></span></th>
+            <th>S<span class="hidden-xs">at<span class="hidden-sm">urday</span></span></th>
+            <th>S<span class="hidden-xs">un<span class="hidden-sm">day</span></span></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @group.characters.each do |character| %>
+            <tr>
+              <th><%= character.name %></th>
+              <% 7.times do %>
+                <td>&nbsp;</td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% end %>
 </div>
 
