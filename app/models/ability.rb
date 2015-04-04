@@ -8,10 +8,15 @@ class Ability
     can :read, Character
     can :manage, Character, :user_id => user.id
     
-    can :create, Group
     can :manage, Group do |group|
         group.characters.exists? :user_id => user.id
     end
+    can :create, Group
+    
+    can :manage, Event do |event|
+        event.group.characters.exists? :user_id => user.id
+    end
+    can :create, Event
     
     # Define abilities for the passed in user here. For example:
     #
