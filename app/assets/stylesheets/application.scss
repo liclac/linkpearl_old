@@ -17,3 +17,11 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  padding-bottom: 20px;
+}
+
+.page-header {
+  margin-top: 0;
+}
