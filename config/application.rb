@@ -28,5 +28,13 @@ module Linkpearl
         # Allow web console in the Vagrant VM
         config.web_console.whitelisted_ips = '172.16.228.0/24'
     end
+    
+    # Enable CORS for the API
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :options, :head]
+      end
+    end
   end
 end

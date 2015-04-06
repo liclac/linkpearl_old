@@ -59,6 +59,8 @@ gem 'swagger-ui_rails'
 
 # Environment variables in a file
 gem 'dotenv-rails'
+# CORS to allow cross-domain API calls
+gem 'rack-cors'
 
 # Bower packages, yay
 source 'https://rails-assets.org' do

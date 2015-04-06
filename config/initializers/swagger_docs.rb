@@ -8,7 +8,7 @@ Swagger::Docs::Config.register_apis({
   "v1" => {
     :api_extension_type => :json,
     :api_file_path => "public/api/docs/v1/",
-    :base_path => (Rails.env.development? ? "//localhost:3000" : "//linkpearl.net"),
+    :base_path => (Rails.env.development? ? "http://localhost:3000" : "https://linkpearl.net"),
     :clean_directory => true,
     :attributes => {
       :info => {
