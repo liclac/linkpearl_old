@@ -23,6 +23,6 @@ class API::V1::CharactersController < ApplicationController
   
   private
   def set_character
-    @character = Character.where('id = ? or lodestone_id = ?', params[:id], params[:id]).take
+    @character = Character.where('id = ? or lodestone_id = ?', params[:id], params[:id]).take!
   end
 end
