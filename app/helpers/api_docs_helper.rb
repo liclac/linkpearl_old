@@ -1,0 +1,2 @@
+module APIDocsHelper
+end

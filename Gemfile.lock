@@ -213,6 +213,10 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    swagger-docs (0.1.9)
+      activesupport (>= 3, < 5)
+      rails (>= 3, < 5)
+    swagger-ui_rails (0.1.7)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -266,6 +270,8 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   sqlite3
+  swagger-docs
+  swagger-ui_rails
   therubyracer
   thin
   turbolinks

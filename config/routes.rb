@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       resources :characters, only: [:show, :delete]
     end
   end
+  
+  # Documentation
+  get '/api' => 'api_docs#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,19 @@
+// Place all the styles related to the api_docs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.swagger-section {
+  #api_info {
+    display: none;
+  }
+  #message-bar:empty {
+    display: none;
+  }
+  
+  .container {
+    width: 100%;
+  }
+  .swagger-ui-wrap {
+    max-width: none;
+  }
+}

@@ -15,5 +15,6 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require moment
+//= require swagger-ui
 //= require turbolinks
 //= require_tree .
