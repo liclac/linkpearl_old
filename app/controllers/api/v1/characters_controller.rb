@@ -4,18 +4,19 @@ class API::V1::CharactersController < ApplicationController
   respond_to :json, :xml
   swagger_controller :characters, "Characters"
   
+  def index
+    respond_with @characters
+  end
+  swagger_api :index do
+    summary "Fetches all known Characters"
+  end
+  
   def show
     respond_with @character
   end
   swagger_api :show do
     summary "Fetches a single Character"
     param :path, :id, :integer, :required, "The character's Lodestone ID"
-    response :unauthorized
     response :not_found
-  end
-  
-  def delete
-    @character.destroy
-    respond_with @character
   end
 end
