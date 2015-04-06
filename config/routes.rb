@@ -26,6 +26,13 @@ Rails.application.routes.draw do
   
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
+  # REST API
+  namespace :api, :defaults => { :format => :json } do
+    namespace :v1 do
+      resources :characters, only: [:show, :delete]
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
