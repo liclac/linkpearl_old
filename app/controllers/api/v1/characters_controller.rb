@@ -1,6 +1,6 @@
 class API::V1::CharactersController < ApplicationController
   before_action :authenticate_user!, :except => :show
-  load_and_authorize_resource :find_by => :lodestone_id
+  load_and_authorize_resource
   respond_to :json, :xml
   swagger_controller :characters, "Characters"
   
