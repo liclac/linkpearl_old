@@ -1,5 +1,6 @@
 class API::V1::CharactersController < ApplicationController
   before_action :authenticate_user!, :except => :show
+  before_filter :set_character, :except => [:index]
   load_and_authorize_resource
   respond_to :json, :xml
   swagger_controller :characters, "Characters"
@@ -16,7 +17,12 @@ class API::V1::CharactersController < ApplicationController
   end
   swagger_api :show do
     summary "Fetches a single Character"
-    param :path, :id, :integer, :required, "The character's Lodestone ID"
+    param :path, :id, :integer, :required, "The character's ID or Lodestone ID"
     response :not_found
+  end
+  
+  private
+  def set_character
+    @character = Character.where('id = ? or lodestone_id = ?', params[:id], params[:id]).take
   end
 end
