@@ -33,13 +33,27 @@
       supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
       onComplete: function(swaggerApi, swaggerUi){
         if(typeof initOAuth == "function") {
-          /*
+          // Hardcode authorization info here, because fuck it
+          swaggerApi.authSchemes = {
+            'oauth2': {
+              'type': 'oauth2',
+              'scopes': [],
+              'grantTypes': {
+                'implicit': {
+                  'loginEndpoint': {
+                    'url': '<%= oauth_authorization_url %>'
+                  },
+                  'tokenName': 'access_token'
+                }
+              }
+            }
+          };
+          
           initOAuth({
-            clientId: "your-client-id",
-            realm: "your-realms",
-            appName: "your-app-name"
+            clientId: "394454040543ad552a9d39a0dd1ff0b659bd9dbeaa1cd22d0c4dbc1d5ea564e7",
+            realm: "Doorkeeper",
+            appName: "Documentation"
           });
-          */
         }
         
         $('pre code').each(function(i, e) {

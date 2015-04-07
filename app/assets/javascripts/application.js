@@ -16,5 +16,6 @@
 //= require select2
 //= require moment
 //= require swagger-ui
+//= require swagger-oauth
 //= require turbolinks
 //= require_tree .

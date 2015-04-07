@@ -46,6 +46,8 @@ gem 'active_link_to'
 gem 'devise'
 # And authorization too!
 gem 'cancancan', '~> 1.10'
+# And then OAuth (2.0 atm) for the API
+gem 'doorkeeper'
 
 # Wanna scrape HTML
 gem 'nokogiri'
