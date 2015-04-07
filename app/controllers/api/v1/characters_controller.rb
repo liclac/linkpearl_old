@@ -1,5 +1,5 @@
 class API::V1::CharactersController < ApplicationController
-  before_action :doorkeeper_authorize!, :except => :show
+  before_action :doorkeeper_authorize!, :except => [:index, :show]
   before_filter :set_character, :except => [:index]
   load_and_authorize_resource
   respond_to :json, :xml
