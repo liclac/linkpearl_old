@@ -17,6 +17,9 @@ module API
         end
         
         desc "Returns a specific character"
+        params do
+          requires :id, type: Integer, desc: "ID or Lodestone ID"
+        end
         get ':id' do
           get_character(params[:id])
         end
