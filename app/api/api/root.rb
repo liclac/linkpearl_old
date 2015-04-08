@@ -6,11 +6,12 @@ module API
     
     mount API::V1::Root
     
-    add_swagger_documentation :api_version => 'v1',
-                              :base_path => '/api',
-                              :hide_documentation_path => true,
-                              :models => [
-                                API::Entities::Character,
-                              ]
+    add_swagger_documentation \
+      :api_version => 'v1',
+      :base_path => '/api',
+      :hide_documentation_path => true,
+      :models => [
+        API::Entities::Character,
+      ]
   end
 end
