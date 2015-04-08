@@ -2,6 +2,7 @@ module API
   class Root < Grape::API
     content_type :json, 'application/json'
     default_format :json
+    rescue_from :all
     
     mount API::V1::Root
     

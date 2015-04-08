@@ -5,7 +5,8 @@ module API
       
       helpers do
         def get_character(id)
-          Character.where('id = ? or lodestone_id = ?', id, id).take!
+          Character.where('id = ? or lodestone_id = ?', id, id).take or \
+            error! "No such character", 404
         end
       end
       
