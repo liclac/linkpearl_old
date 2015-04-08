@@ -23,6 +23,10 @@ module Linkpearl
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     
+    # Autoreload API files too
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    
     # Development configuration; not for production servers
     if Rails.env.development?
         # Allow web console in the Vagrant VM
