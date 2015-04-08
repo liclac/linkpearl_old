@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   
   private
   def unauthorizable_controller?
-    self.devise_controller? or self.is_a? RailsAdmin::ApplicationController
+    self.devise_controller? or \
+      self.is_a? RailsAdmin::ApplicationController or \
+      self.is_a? SwaggerController
   end
 end
