@@ -2,7 +2,6 @@ module API
   module V1
     class Characters < Grape::API
       version 'v1'
-      format :json
       
       helpers do
         def get_character(id)
