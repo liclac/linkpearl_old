@@ -11,12 +11,12 @@ module API
       end
       
       resource :characters do
-        desc "Return list of characters"
+        desc "Return list of characters", entity: API::Entities::Character
         get do
           present Character.all, with: API::Entities::Character
         end
         
-        desc "Returns a specific character"
+        desc "Returns a specific character", entity: API::Entities::Character
         params do
           requires :id, type: Integer, desc: "ID or Lodestone ID"
         end
