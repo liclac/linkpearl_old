@@ -11,12 +11,19 @@ module API
       end
       
       resource :characters do
-        desc "Return list of characters", entity: API::Entities::Character
+        desc "Return list of characters" do
+          success API::Entities::Character
+        end
         get do
           present Character.all, with: API::Entities::Character
         end
         
-        desc "Returns a specific character", entity: API::Entities::Character
+        desc "Returns a specific character" do
+          success API::Entities::Character
+          failure [
+            [404, "The character does not exist", API::Entities::Error],
+          ]
+        end
         params do
           requires :id, type: Integer, desc: "ID or Lodestone ID"
         end
