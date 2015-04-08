@@ -297,6 +297,7 @@ DEPENDENCIES
   doorkeeper
   dotenv-rails
   grape
+  grape-entity
   grape-swagger
   grape-swagger-ui
   hashie-forbidden_attributes

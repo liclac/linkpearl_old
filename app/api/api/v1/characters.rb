@@ -13,7 +13,7 @@ module API
       resource :characters do
         desc "Return list of characters"
         get do
-          Character.all
+          present Character.all, with: API::Entities::Character
         end
         
         desc "Returns a specific character"
@@ -21,7 +21,7 @@ module API
           requires :id, type: Integer, desc: "ID or Lodestone ID"
         end
         get ':id' do
-          get_character(params[:id])
+          present get_character(params[:id]), with: API::Entities::Character
         end
       end
     end
