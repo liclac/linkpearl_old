@@ -2,7 +2,23 @@ module API
   class Root < Grape::API
     content_type :json, 'application/json'
     default_format :json
+    
+    # Workaround for `error!` being unavailable in rescue_from blocks right now:
+    # https://github.com/intridea/grape/commit/c20a9ad3ff81865898258d8bf92271048f1ff2b0
+    def self.http_error(code, e)
+      Rack::Response.new([ JSON.pretty_generate({ error: e }) ], code, { "Content-type" => "text/json" }).finish
+    end
+    
     rescue_from :all
+    rescue_from WineBouncer::Errors::OAuthUnauthorizedError do |e|
+      API::Root::http_error 401, "OAuth authorization is required here"
+    end
+    rescue_from WineBouncer::Errors::OAuthForbiddenError do |e|
+      API::Root::http_error 403, "Your access token is invalid for this scope"
+    end
+    rescue_from CanCan::AccessDenied do |e|
+      API::Root::http_error 403, "Can't let you do that!"
+    end
     
     use ::WineBouncer::OAuth2
     mount API::V1::Root
