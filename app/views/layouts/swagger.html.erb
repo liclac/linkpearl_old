@@ -15,7 +15,7 @@
         });
         $(function () {
           window.swaggerUi = new SwaggerUi({
-            url: "http://<%= request.host%>:<%=request.port%>/api/swagger_doc",
+            url: "<%= request.scheme %><%= request.host%>:<%=request.port%>/api/swagger_doc",
             apiKey: "",
             dom_id: "swagger-ui-container",
             supportHeaderParams: false,
