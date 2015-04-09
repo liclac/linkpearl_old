@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408214039) do
+ActiveRecord::Schema.define(version: 20150409165854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,20 @@ ActiveRecord::Schema.define(version: 20150408214039) do
   add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
+  create_table "rsvps", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "event_id"
+    t.date     "date"
+    t.boolean  "answer"
+    t.string   "comment"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rsvps", ["character_id"], name: "index_rsvps_on_character_id", using: :btree
+  add_index "rsvps", ["date"], name: "index_rsvps_on_date", using: :btree
+  add_index "rsvps", ["event_id"], name: "index_rsvps_on_event_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -122,4 +136,6 @@ ActiveRecord::Schema.define(version: 20150408214039) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "characters", "users"
+  add_foreign_key "rsvps", "characters"
+  add_foreign_key "rsvps", "events"
 end

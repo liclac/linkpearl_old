@@ -63,10 +63,10 @@
           <% @group.characters.each do |character| %>
             <tr>
               <th><%= character.name %></th>
-              <% 7.times do %>
-                <% if character.user == current_user && rand(0..1) == 1 %>
+              <% for day, rsvp in event.weekly_rsvps_for character %>
+                <% if rsvp.answer == nil %>
                 <td class="text-center">?</td>
-                <% elsif rand(0..2) != 0 %>
+                <% elsif rsvp.answer %>
                 <td class="text-center success text-success">&#x2713;</td>
                 <% else %>
                 <td class="text-center danger text-danger">&#x2717;</td>

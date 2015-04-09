@@ -17,4 +17,7 @@
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'API'
+  inflect.acronym 'APIs'
+  inflect.acronym 'RSVP'
+  inflect.acronym 'RSVPs'
 end

@@ -35,7 +35,7 @@ RailsAdmin.config do |config|
   config.label_methods << :to_s
   
   config.included_models = [
-    'User', 'Character', 'Group', 'Event',
+    'User', 'Character', 'Group', 'Event', 'RSVP',
     'Doorkeeper::Application',
   ]
 end
