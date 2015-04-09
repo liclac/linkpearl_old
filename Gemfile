@@ -66,7 +66,7 @@ gem 'wine_bouncer'
 gem 'hashie-forbidden_attributes'
 
 # Send CORS headers
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Environment variables in a file
 gem 'dotenv-rails'
