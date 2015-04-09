@@ -87,7 +87,7 @@
     placeholder: "Select the character you wish to add",
     minimumInputLength: 3,
     ajax: {
-      url: "http<%= s if Rails.env.production? %>://<%= request.host_with_port %>/api/v1/characters.json",
+      url: "http<%= 's' if Rails.env.production? %>://<%= request.host_with_port %>/api/v1/characters.json",
       dataType: 'json',
       quietMillis: 250,
       data: function(q, p) { return { q: q }; },
