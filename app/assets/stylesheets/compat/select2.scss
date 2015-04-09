@@ -1,0 +1,8 @@
+.input-group {
+  .select2-container .select2-choice {
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
