@@ -83,14 +83,23 @@
 </div>
 
 <script type="text/javascript">
-  $('#lodestone_id')
-    .attr('placeholder', "Select the character you wish to add")
-    .select2({
-    data: [
-      <% Character.all.each do |character| %>
-      {'id': <%= character.lodestone_id %>, 'text': "<%= character.name.html_safe %>"},
-      <% end %>
-    ],
+  $('#lodestone_id').select2({
+    placeholder: "Select the character you wish to add",
+    minimumInputLength: 3,
+    ajax: {
+      url: "http<%= s if Rails.env.production? %>://<%= request.host_with_port %>/api/v1/characters.json",
+      dataType: 'json',
+      quietMillis: 250,
+      data: function(q, p) { return { q: q }; },
+      results: function(data, p) {
+        var results = [];
+        for(i in data) {
+          var d = data[i];
+          results.push({ id: d.lodestone_id, text: d.first_name + ' ' + d.last_name });
+        }
+        return { results: results, more: false };
+      }
+    }
   });
   
   $('#timezones-adjusted').show();
