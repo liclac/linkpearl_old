@@ -14,8 +14,24 @@ module API
         desc "Return list of characters" do
           success API::Entities::Character
         end
+        params do
+          optional :q, type: String, desc: "Optional search query (name)"
+        end
         get do
-          present Character.all, with: API::Entities::Character
+          characters = []
+          q = params[:q]
+          if q
+            parts = q.split(' ')
+            case parts.length
+            when 1
+              characters = Character.where('lower(first_name) LIKE :q or lower(last_name) LIKE :q', { q: "%#{q}%".downcase }).all
+            when 2
+              characters = Character.where('lower(first_name) LIKE ? and lower(last_name) LIKE ?', "%#{parts[0]}%".downcase, "%#{parts[1]}%").all
+            end
+          else
+            characters = Character.all
+          end
+          present characters, with: API::Entities::Character
         end
         
         desc "Returns a specific character" do
