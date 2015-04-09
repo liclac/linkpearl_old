@@ -14,7 +14,6 @@ module API
         desc "Return list of characters" do
           success API::Entities::Character
         end
-        oauth2
         get do
           present Character.all, with: API::Entities::Character
         end
