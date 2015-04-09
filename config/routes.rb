@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  use_doorkeeper
+  use_doorkeeper do
+    controllers :applications => 'oauth/applications'
+  end
   devise_for :users
   
   # The priority is based upon order of creation: first created -> highest priority.
