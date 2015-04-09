@@ -38,7 +38,7 @@ module API
           ],
           :grantTypes => {
             :implicit => {
-              :loginEndpoint => { :url => 'http://localhost:3000/oauth/authorize' },
+              :loginEndpoint => { :url => '/oauth/authorize' },
               :tokenName => 'access_token',
             }
           }
