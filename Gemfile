@@ -65,9 +65,6 @@ gem 'wine_bouncer'
 # Prevent ActiveRecord's Strong Parameters from choking on API params
 gem 'hashie-forbidden_attributes'
 
-# Send CORS headers
-gem 'rack-cors'
-
 # Environment variables in a file
 gem 'dotenv-rails'
 
