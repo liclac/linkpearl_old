@@ -32,12 +32,8 @@ Rails.application.routes.draw do
   # get '/api' => 'api_docs#show'
   
   # REST API
-  # namespace :api, :defaults => { :format => :json } do
-  #   namespace :v1 do
-  #     resources :characters, only: [:index, :show]
-  #   end
-  # end
   mount API::Root => '/api'
+  get '/api' => redirect('/api/swagger')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
