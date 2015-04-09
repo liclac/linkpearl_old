@@ -83,8 +83,8 @@
 </div>
 
 <script type="text/javascript">
+  $('#lodestone_id').attr('placeholder', "Select the character you wish to add");
   $('#lodestone_id').select2({
-    placeholder: "Select the character you wish to add",
     minimumInputLength: 3,
     ajax: {
       url: "http<%= 's' if Rails.env.production? %>://<%= request.host_with_port %>/api/v1/characters.json",
