@@ -27,6 +27,14 @@ module Linkpearl
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
     
+    # Send CORS headers
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
+    
     # Development configuration; not for production servers
     if Rails.env.development?
         # Allow web console in the Vagrant VM
