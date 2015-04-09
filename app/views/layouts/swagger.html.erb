@@ -23,16 +23,14 @@
                 onComplete: function (swaggerApi, swaggerUi) {
                     log("Loaded SwaggerUI");
                     if (typeof initOAuth == "function") {
-                        /*
-                         initOAuth({
-                         clientId: "your-client-id",
-                         realm: "your-realms",
-                         appName: "your-app-name"
-                         });
-                         */
+                     initOAuth({
+                       clientId: "943698ff986d38150ac2ad1719711a078d71dabb18eab565a57ba0dea16b7b03",
+                       realm: "Doorkeeper",
+                       appName: "Sandbox"
+                     });
                     }
                     $('pre code').each(function (i, e) {
-                        hljs.highlightBlock(e)
+                        hljs.highlightBlock(e);
                     });
                 },
                 onFailure: function (data) {
@@ -54,6 +52,7 @@
     </script>
 </head>
 <body class="swagger-section">
+
 <div id="header">
     <div class="swagger-ui-wrap">
         <a href="http://swagger.wordnik.com" id="logo">Swagger</a>
@@ -71,6 +70,7 @@
         </form>
     </div>
 </div>
+
 <div class="swagger-ui-wrap" id="message-bar">&nbsp;</div>
 <div class="swagger-ui-wrap" id="swagger-ui-container"></div>
 
