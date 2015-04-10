@@ -1,6 +1,11 @@
 module API
   module Entities
     class Group < Grape::Entity
+      expose :id, documentation: {
+        type: Integer, required: true,
+        desc: "Unique ID"
+      }
+      
       expose :name, documentation: {
         type: String, required: true, defaultValue: "Naul Chasers",
         desc: "The name of the group"
