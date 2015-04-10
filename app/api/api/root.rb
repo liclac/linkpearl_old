@@ -28,7 +28,9 @@ module API
       :base_path => '/api',
       :hide_documentation_path => true,
       :models => [
+        API::Entities::Error,
         API::Entities::Character,
+        API::Entities::Group,
       ],
       :authorizations => {
         :oauth2 => {

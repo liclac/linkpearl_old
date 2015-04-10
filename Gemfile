@@ -62,6 +62,8 @@ gem 'grape-swagger'
 gem 'grape-swagger-ui'
 # And OAuth2 authentication
 gem 'wine_bouncer'
+# Also CanCan authorization
+gem 'grape-cancan'
 # Prevent ActiveRecord's Strong Parameters from choking on API params
 gem 'hashie-forbidden_attributes'
 
