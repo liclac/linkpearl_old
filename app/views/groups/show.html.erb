@@ -12,7 +12,7 @@
 <div class="col-md-9 col-md-pull-3">
   <% if @group.message %>
     <h3>Message</h3>
-    <p><%= @group.message %></p>
+    <p><%= markdown(@group.message) %></p>
   <% end %>
   
   <h3>Members</h3>

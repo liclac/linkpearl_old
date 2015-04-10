@@ -225,6 +225,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redcarpet (3.2.3)
     ref (1.0.5)
     remotipart (1.2.1)
     responders (2.1.0)
@@ -320,6 +321,7 @@ DEPENDENCIES
   rails-assets-select2 (~> 3.5.2)!
   rails-assets-select2-bootstrap-css!
   rails_admin
+  redcarpet
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

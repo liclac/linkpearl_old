@@ -41,6 +41,8 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootstrap_form'
 # Easily add 'active' classes to links
 gem 'active_link_to'
+# Markdown!
+gem 'redcarpet'
 
 # Authentication, ho!
 gem 'devise'
