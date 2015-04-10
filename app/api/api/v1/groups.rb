@@ -14,7 +14,7 @@ module API
         desc "Returns all accessible groups" do
           success API::Entities::Group
           failure [
-            [401, "Missing authentication", API::Entities::Error],
+            [401, "Missing authentication"],
           ]
         end
         oauth2
@@ -25,8 +25,8 @@ module API
         desc "Creates a new group" do
           success API::Entities::Group
           failure [
-            [401, "Missing authentication", API::Entities::Error],
-            [403, "The founding character is not yours", API::Entities::Error],
+            [401, "Missing authentication"],
+            [403, "The founding character is not yours"],
           ]
         end
         params do
@@ -52,9 +52,9 @@ module API
         desc "Returns a specific group" do
           success API::Entities::Group
           failure [
-            [404, "The group does not exist", API::Entities::Error],
-            [401, "Missing authentication", API::Entities::Error],
-            [403, "Not allowed to access this group", API::Entities::Error],
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
           ]
         end
         params do
@@ -70,9 +70,9 @@ module API
         desc "Updates group information" do
           success API::Entities::Group
           failure [
-            [404, "The group does not exist", API::Entities::Error],
-            [401, "Missing authentication", API::Entities::Error],
-            [403, "Not allowed to access this group", API::Entities::Error],
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
           ]
         end
         params do
