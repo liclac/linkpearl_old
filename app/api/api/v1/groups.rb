@@ -22,6 +22,33 @@ module API
           present current_user.groups, with: API::Entities::Group
         end
         
+        desc "Creates a new group" do
+          success API::Entities::Group
+          failure [
+            [401, "Missing authentication", API::Entities::Error],
+            [403, "The founding character is not yours", API::Entities::Error],
+          ]
+        end
+        params do
+          use :group_params
+          requires :founder_id, type: Integer, desc: "ID of the founding character"
+        end
+        oauth2
+        post do
+          authorize! :create, Group
+          
+          @founder = Character.find(params.founder_id)
+          error!({error: "You can't found a group using somebody else's character!"}, 403) \
+            unless @founder.user == current_user
+          
+          @group = Group.new
+          @group.name = params.name
+          @group.message = params.message
+          @group.characters = [@founder]
+          @group.save
+          present @group, with: API::Entities::Group
+        end
+        
         desc "Returns a specific group" do
           success API::Entities::Group
           failure [
