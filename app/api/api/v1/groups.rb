@@ -87,6 +87,25 @@ module API
           present @group, with: API::Entities::Group
         end
         
+        desc "Deletes a group" do
+          success API::Entities::Group
+          failure [
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer
+        end
+        oauth2
+        delete ':id' do
+          @group = Group.find(params[:id])
+          authorize! :delete, @group
+          @group.destroy
+          present @group, with: API::Entities::Group
+        end
+        
         desc "Returns all members in the group" do
           success API::Entities::Character
           failure [
