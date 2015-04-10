@@ -5,7 +5,7 @@ module API
       
       helpers do
         params :group_params do
-          optional :name, type: String
+          requires :name, type: String
           optional :message, type: String
         end
       end
@@ -56,7 +56,7 @@ module API
         put ':id' do
           puts params
           @group = Group.find(params[:id])
-          @group.update(declared(params, include_missing: false))
+          @group.update(declared(params))
           authorize! :write, @group
           present @group, with: API::Entities::Group
         end
