@@ -31,13 +31,9 @@ module API
         desc: "Freeform character profile"
       }
       
-      expose :created_at, documentation: {
-        type: DateTime, required: true, defaultValue: Time.current.utc,
-        desc: "Time of the last update"
-      }
       expose :updated_at, documentation: {
         type: DateTime, required: true, defaultValue: Time.current.utc,
-        desc: "Time of initial import"
+        desc: "Time of the last lodestone sync"
       }
       
       def self.entity_name() "Character" end

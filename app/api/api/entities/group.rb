@@ -15,15 +15,6 @@ module API
         desc: "A message only members can see"
       }
       
-      expose :created_at, documentation: {
-        type: DateTime, required: true, defaultValue: Time.current.utc,
-        desc: "Time of the last edit"
-      }
-      expose :updated_at, documentation: {
-        type: DateTime, required: true, defaultValue: Time.current.utc,
-        desc: "Time of the group's creation"
-      }
-      
       expose :characters, using: API::Entities::Character, documentation: {
         is_array: true,
         desc: "Characters in this group"
