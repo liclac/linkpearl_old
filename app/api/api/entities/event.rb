@@ -1,7 +1,7 @@
 module API
   module Entities
     class Event < Grape::Entity
-      format_with(:time_only) { |dt| "lol" }
+      format_with(:time_only) { |dt| dt.strftime("%H:%M") }
       
       expose :id, documentation: {
         type: Integer, required: true,
@@ -16,11 +16,12 @@ module API
         type: String, required: true, defaultValue: "gib naul",
         desc: "Name of the event"
       }
-      expose :time, documentation: {
-        type: Time, required: true,
-        format_with: :time_only,
-        desc: "Time of the event"
-      }
+      with_options(format_with: :time_only) do
+        expose :time, documentation: {
+          type: Time, required: true,
+          desc: "Time of the event"
+        }
+      end
       
       def self.entity_name() "Event" end
     end
