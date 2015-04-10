@@ -18,7 +18,7 @@ module API
       }
       with_options(format_with: :time_only) do
         expose :time, documentation: {
-          type: Time, required: true,
+          type: Time, required: true, defaultValue: Time.now.strftime("%H:%M"),
           desc: "Time of the event"
         }
       end
