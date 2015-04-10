@@ -86,6 +86,77 @@ module API
           authorize! :write, @group
           present @group, with: API::Entities::Group
         end
+        
+        desc "Returns all members in the group" do
+          success API::Entities::Character
+          failure [
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer
+        end
+        oauth2
+        get ':id/characters' do
+          @group = Group.find(params[:id])
+          authorize! :read, @group
+          present @group.characters, with: API::Entities::Character
+        end
+        
+        desc "Adds a member to a group" do
+          success API::Entities::Character
+          failure [
+            [404, "The group or character does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+            [409, "Attempted to re-add an existing member"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+          requires :character_id, type: Integer, desc: "ID of the character to add"
+        end
+        oauth2
+        post ':id/characters' do
+          @character = Character.find(params[:character_id])
+          @group = Group.find(params[:id])
+          authorize! :write, @group
+          
+          error!({error: "That character is already a member!"}, 409)\
+            if @group.characters.exists? @character
+          
+          @group.characters.push @character
+          status 201
+          present @group.characters, with: API::Entities::Character
+        end
+        
+        desc "Removes a member from a group" do
+          success API::Entities::Character
+          failure [
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+            [410, "The character is not a member of the group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+          requires :character_id, type: Integer, desc: "ID of the character to remove"
+        end
+        oauth2
+        delete ':id/characters/:character_id' do
+          @character = Character.find(params[:character_id])
+          @group = Group.find(params[:id])
+          authorize! :write, @group
+          
+          error!({error: "That character isn't a member!"}, 410)\
+            unless @group.characters.exists? @character
+          
+          @group.characters.destroy @character
+          present @group.characters, with: API::Entities::Character
+        end
       end
     end
   end
