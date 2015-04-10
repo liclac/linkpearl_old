@@ -54,7 +54,6 @@ module API
         end
         oauth2
         put ':id' do
-          puts params
           @group = Group.find(params[:id])
           @group.update(declared(params))
           authorize! :write, @group
