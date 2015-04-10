@@ -19,6 +19,10 @@ module API
         is_array: true,
         desc: "Characters in this group"
       }
+      expose :events, using: API::Entities::Event, documentation: {
+        is_array: true,
+        desc: "Events in this group"
+      }
       
       def self.entity_name() "Group" end
     end
