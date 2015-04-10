@@ -19,6 +19,11 @@ module API
         desc: "Time of the group's creation"
       }
       
+      expose :characters, using: API::Entities::Character, documentation: {
+        is_array: true,
+        desc: "Characters in this group"
+      }
+      
       def self.entity_name() "Group" end
     end
   end
