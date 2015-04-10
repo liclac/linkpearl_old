@@ -176,6 +176,70 @@ module API
           @group.characters.destroy @character
           present @group.characters, with: API::Entities::Character
         end
+        
+        desc "Returns all events for the group" do
+          success API::Entities::Event
+          failure [
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+        end
+        oauth2
+        get ':id/events' do
+          @group = Group.find(params[:id])
+          authorize! :read, @group
+          present @group.events, with: API::Entities::Event
+        end
+        
+        desc "Creates a new event" do
+          success API::Entities::Event
+          failure [
+            [404, "The group does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+          requires :name, type: String, desc: "Name of the event"
+          requires :time, type: String, desc: "When it goes down (UTC!)", regexp: /\d?\d:\d\d/
+        end
+        oauth2
+        post ':id/events' do
+          @group = Group.find(params[:id])
+          authorize! :write, @group
+          authorize! :create, Event
+          
+          @event = Event.create!({
+            group: @group,
+            name: params[:name], time: params[:time],
+          })
+          present @event, with: API::Entities::Event
+        end
+        
+        desc "Deletes an event" do
+          success API::Entities::Event
+          failure [
+            [404, "The group or event does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+          requires :event_id, type: Integer, desc: "ID of the event"
+        end
+        oauth2
+        delete ':id/events/:event_id' do
+          @event = Event.find(params[:event_id])
+          authorize! :delete, @event
+          @event.destroy
+          present @event, with: API::Entities::Event
+        end
       end
     end
   end
