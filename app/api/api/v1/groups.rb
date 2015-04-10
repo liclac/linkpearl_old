@@ -82,8 +82,8 @@ module API
         oauth2
         put ':id' do
           @group = Group.find(params[:id])
-          @group.update(declared(params))
           authorize! :write, @group
+          @group.update(declared(params))
           present @group, with: API::Entities::Group
         end
         
