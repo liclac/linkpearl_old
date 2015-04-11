@@ -24,12 +24,11 @@ Set up the application:
     bundle install
     rake db:migrate
 
-Run a development server:  
-(the -b is needed in a VM!)
+Run a development server, complete with a task queue, etc:
 
-    rails s -b 0.0.0.0
+    bundle exec foreman start
 
-Access it at <http://localhost:3000>, and register an account.  
+Access it at <http://localhost:5000>, and register an account.  
 Then promote yourself to admin:
 
     rake 'promote[youremail@example.com]'

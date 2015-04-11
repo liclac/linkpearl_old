@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
   
   # Forward some ports
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
   
   # Set CPU count and RAM limits
   config.vm.provider "virtualbox" do |v|
