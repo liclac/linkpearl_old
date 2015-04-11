@@ -44,7 +44,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # The linkpearl account has permission to sudo this one specific command
-      execute "sudo service linkpearl restart"
+      execute "sudo restart linkpearl"
     end
   end
 
