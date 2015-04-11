@@ -28,12 +28,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-# Also use it as a development server
-# gem 'unicorn-rails'
-# I'm gonna use Thin until I get Unicorn working properly
+# Easier management of different processes
+gem 'foreman'
+# Use Thin as the app server
 gem 'thin'
+# Sidekiq for background job processing
+gem 'sidekiq'
 
 # Use Bootstrap as our UI framework of choice
 gem 'bootstrap-sass', '~> 3.3.4'
