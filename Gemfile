@@ -73,7 +73,7 @@ gem 'hashie-forbidden_attributes'
 gem 'rack-cors', :require => 'rack/cors'
 
 # Environment variables in a file
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 
 # Bower packages, yay
 source 'https://rails-assets.org' do
