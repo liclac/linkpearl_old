@@ -43,7 +43,8 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute "service thin restart"  ## -> line you should add
+      # The linkpearl account has permission to sudo this one specific command
+      execute "sudo service linkpearl restart"
     end
   end
 
