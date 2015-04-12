@@ -221,6 +221,49 @@ module API
           present @event, with: API::Entities::Event
         end
         
+        desc "Returns a specific event" do
+          success API::Entities::Event
+          failure [
+            [404, "The group or event does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+          requires :event_id, type: Integer, desc: "ID of the event"
+        end
+        oauth2
+        get ':id/events/:event_id' do
+          @event = Event.find(params[:event_id])
+          authorize! :read, @event
+          present @event, with: API::Entities::Event
+        end
+        
+        desc "Updates an event" do
+          success API::Entities::Event
+          failure [
+            [404, "The group or event does not exist"],
+            [401, "Missing authentication"],
+            [403, "Not allowed to access this group"],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID of the group"
+          requires :event_id, type: Integer, desc: "ID of the event"
+          requires :name, type: String, desc: "Name of the event"
+          requires :time, type: String, desc: "When it goes down (UTC!)", regexp: /\d?\d:\d\d/
+        end
+        oauth2
+        put ':id/events/:event_id' do
+          @event = Event.find(params[:event_id])
+          authorize! :write, @event
+          @event.name = params[:name]
+          @event.time = params[:time]
+          @event.save!
+          present @event, with: API::Entities::Event
+        end
+        
         desc "Deletes an event" do
           success API::Entities::Event
           failure [
