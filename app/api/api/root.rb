@@ -35,9 +35,9 @@ module API
       :authorizations => {
         :oauth2 => {
           :type => 'oauth2',
-          :scopes => [
-            { :scope => 'default', :description => "Default Scope" },
-          ],
+          # :scopes => [
+          #   { :scope => 'default', :description => "Default Scope" },
+          # ],
           :grantTypes => {
             :implicit => {
               :loginEndpoint => { :url => '/oauth/authorize' },
