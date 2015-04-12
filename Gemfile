@@ -34,6 +34,8 @@ gem 'foreman'
 gem 'thin'
 # Sidekiq for background job processing
 gem 'sidekiq'
+# Fancy Crontab management
+gem 'whenever', :require => false
 
 # Use Bootstrap as our UI framework of choice
 gem 'bootstrap-sass', '~> 3.3.4'
