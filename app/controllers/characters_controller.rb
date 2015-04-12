@@ -10,8 +10,8 @@ class CharactersController < ApplicationController
   end
   
   def redirect_to_verify
-    redirect_to characters_import_path unless params.include? :lodestone_id
-    redirect_to characters_verify_path(:lodestone_id => params[:lodestone_id])
+    redirect_to import_characters_path unless params.include? :lodestone_id
+    redirect_to verify_characters_path(:lodestone_id => params[:lodestone_id])
   end
   
   def verify
@@ -36,7 +36,7 @@ class CharactersController < ApplicationController
         'first_name' => @character.first_name, 'last_name' => @character.last_name,
         'world' => @character.world, 'bio' => @character.bio,
       }
-      return redirect_to characters_unverified_path(:lodestone_id => @character.lodestone_id)
+      return redirect_to unverified_characters_path(:lodestone_id => @character.lodestone_id)
     end
   rescue OpenURI::HTTPError => error
     code = error.io.status[0].to_i
@@ -48,7 +48,7 @@ class CharactersController < ApplicationController
   end
   
   def unverified
-    redirect_to characters_verify_path(params[:lodestone_id]) unless session.include? :char_verify_data
+    redirect_to verify_characters_path(params[:lodestone_id]) unless session.include? :char_verify_data
     
     ensure_token
     @data = session[:char_verify_data]

@@ -15,7 +15,7 @@
         </li>
       </ol>
       <hr />
-      <%= bootstrap_form_tag url: characters_redirect_to_verify_path do |f| %>
+      <%= bootstrap_form_tag url: redirect_to_verify_characters_path do |f| %>
         <%= f.text_field :lodestone_id, label: "Lodestone ID", autofocus: true, append: f.submit("Import", class: 'btn btn-primary btn-block') %>
       <% end %>
     </div>

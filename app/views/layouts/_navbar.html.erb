@@ -22,7 +22,7 @@
               <% end %>
               <li class="divider"></li>
             <% end %>
-            <%= active_link_to 'Import', characters_import_path, :wrap_tag => 'li' %>
+            <%= active_link_to 'Import', import_characters_path, :wrap_tag => 'li' %>
           </ul>
         </li>
         <li class="dropdown <%= 'active' if params[:controller] == 'groups' %>">

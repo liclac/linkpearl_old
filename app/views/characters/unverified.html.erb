@@ -14,8 +14,8 @@
       <p>If this is the correct character, make sure to put this somewhere in the <strong>Character Profile</strong> field on their page:</p>
       <pre><%= @token %></pre>
       <hr />
-      <%= link_to "It's there now, try again!", characters_verify_path(:lodestone_id => params[:lodestone_id]), class: 'btn btn-primary btn-block' %>
-      <%= link_to "Oops, entered the wrong ID", characters_import_path, class: 'btn btn-default btn-block' %>
+      <%= link_to "It's there now, try again!", verify_characters_path(:lodestone_id => params[:lodestone_id]), class: 'btn btn-primary btn-block' %>
+      <%= link_to "Oops, entered the wrong ID", import_characters_path, class: 'btn btn-default btn-block' %>
     </div>
   </div>
 </div>
