@@ -19,9 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# Sync outdated profiles once every 30min
-# Note: This will not hit the Lodestone once for every character once every
-# 30min - only chars that haven't been updated in a certain time will be synced
-every 30.minutes do
+# Sync outdated profiles at 03:10 and 15:10, to match up with the Lodestone's
+# updates at 0:00 and 12:00 (03:00 and 15:00 UTC), covering for any delayed
+# lodestone updates; the most delayed ones have been ~6min
+every '10 3,15 * * *' do
   runner 'QueueSyncsJob.perform_later'
 end

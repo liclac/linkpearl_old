@@ -2,9 +2,12 @@ class QueueSyncsJob < ActiveJob::Base
   queue_as :default
 
   def perform()
-    @characters = Character.where('synced_at < ?', Time.now - 2.hours).all
-    for character in @characters
-      SyncCharacterJob.perform_later character
+    offset = 0.minutes
+    Character.find_in_batches(batch_size: 25) do |characters|
+      characters.each do |character|
+        SyncCharacterJob.set(wait: offset).perform_later(character)
+      end
+      offset += 2.minutes
     end
   end
 end
