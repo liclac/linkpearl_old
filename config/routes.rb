@@ -15,15 +15,15 @@ Rails.application.routes.draw do
   post 'c/import' => 'characters#redirect_to_verify', as: 'characters_redirect_to_verify'
   get 'c/import/:lodestone_id' => 'characters#unverified', as: 'characters_unverified'
   get 'c/import/:lodestone_id/verify' => 'characters#verify', as: 'characters_verify'
-  resources :characters, only: ['edit', 'show', 'update', 'destroy']
+  resources :characters, path: '/c', only: ['edit', 'show', 'update', 'destroy']
   
   # Groups
-  resources :groups do
+  resources :groups, path: '/g' do
     member do
       post 'members' => 'groups#add', as: 'add_to'
       delete 'members/:lodestone_id' => 'groups#remove', as: 'remove_from'
       
-      resources :events, path: ''
+      resources :events, path: '/e'
     end
   end
   
