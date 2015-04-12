@@ -45,7 +45,7 @@ module API
           @group.name = params.name
           @group.message = params.message
           @group.characters = [@founder]
-          @group.save
+          @group.save!
           present @group, with: API::Entities::Group
         end
         
@@ -83,7 +83,7 @@ module API
         put ':id' do
           @group = Group.find(params[:id])
           authorize! :write, @group
-          @group.update(declared(params))
+          @group.update!(declared(params))
           present @group, with: API::Entities::Group
         end
         
