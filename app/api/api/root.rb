@@ -36,7 +36,7 @@ module API
         :oauth2 => {
           :type => 'oauth2',
           :scopes => [
-            { :scope => 'public', :description => "Public Access" },
+            { :scope => 'default', :description => "Default Scope" },
           ],
           :grantTypes => {
             :implicit => {
