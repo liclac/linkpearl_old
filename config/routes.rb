@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       post 'members' => 'groups#add', as: 'add_to'
       delete 'members/:lodestone_id' => 'groups#remove', as: 'remove_from'
       
-      resources :events, path: '', except: [:index]
+      resources :events, path: '', except: [:index, :show]
     end
   end
   
