@@ -18,6 +18,7 @@ class Character < ActiveRecord::Base
   
   belongs_to :user
   has_and_belongs_to_many :groups
+  has_and_belongs_to_many :achievements
   
   def name
     "#{self.first_name} #{self.last_name}"
@@ -66,6 +67,39 @@ class Character < ActiveRecord::Base
     end
     
     self.info[:classes] = info_classes
+  end
+  
+  def lodestone_achievements_update
+    page = 0
+    loop do
+      page += 1
+      doc = lodestone_load 'achievement', page
+      imported = import_achievements doc
+      break if imported == 0
+    end
+    
+    # Allow 'Character.find(...).lodestone_achievements_update.save!'
+    self
+  end
+  
+  def import_achievements(doc)
+    imported = 0
+    
+    doc.css('.achievement_list li .achievement_txt a').each do |link|
+      lodestone_id = link.attr('href').split('/').last
+      name = link.text
+      
+      ach = Achievement.find_or_create_by!(lodestone_id: lodestone_id) do |a|
+        a.name = name
+      end
+      
+      unless self.achievements.exists?(ach)
+        self.achievements.push ach
+        imported += 1
+      end
+    end
+    
+    imported
   end
   
   def lodestone_link(subpage=nil, page=0)

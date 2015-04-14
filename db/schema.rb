@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414100304) do
+ActiveRecord::Schema.define(version: 20150414125125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.integer  "lodestone_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "achievements_characters", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "achievement_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "achievements_characters", ["achievement_id"], name: "index_achievements_characters_on_achievement_id", using: :btree
+  add_index "achievements_characters", ["character_id"], name: "index_achievements_characters_on_character_id", using: :btree
 
   create_table "characters", force: :cascade do |t|
     t.integer  "lodestone_id", limit: 8
