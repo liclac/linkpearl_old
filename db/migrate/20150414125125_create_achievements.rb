@@ -2,7 +2,7 @@ class CreateAchievements < ActiveRecord::Migration
   def change
     create_table :achievements do |t|
       t.integer :lodestone_id
-      t.string :name
+      t.string :name, index: true
       t.text :description
 
       t.timestamps null: false

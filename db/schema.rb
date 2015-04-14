@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20150414125125) do
     t.datetime "updated_at",   null: false
   end
 
+  add_index "achievements", ["name"], name: "index_achievements_on_name", using: :btree
+
   create_table "achievements_characters", force: :cascade do |t|
     t.integer  "character_id"
     t.integer  "achievement_id"
