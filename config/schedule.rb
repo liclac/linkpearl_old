@@ -23,5 +23,5 @@
 # updates at 0:00 and 12:00 (03:00 and 15:00 UTC), covering for any delayed
 # lodestone updates; the most delayed ones have been ~6min
 every '10 3,15 * * *' do
-  runner 'QueueSyncsJob.perform_later'
+  runner 'QueueCharacterSyncsJob.perform_later'
 end
