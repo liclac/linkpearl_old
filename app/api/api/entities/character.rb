@@ -31,7 +31,7 @@ module API
         desc: "Freeform character profile"
       }
       
-      expose :updated_at, documentation: {
+      expose :synced_at, documentation: {
         type: DateTime, required: true, defaultValue: Time.current.utc,
         desc: "Time of the last lodestone sync"
       }
