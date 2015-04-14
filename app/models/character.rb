@@ -23,13 +23,17 @@ class Character < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
-  def lodestone_update
+  def lodestone_load(subpage=nil, page=0)
     headers = {
       'User-Agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18"
     }
-    doc = Nokogiri::HTML(open(lodestone_link, headers)) do |config|
-      config.nonet
-    end
+    url = lodestone_link(subpage, page)
+    
+    Nokogiri::HTML(open(url, headers)) { |config| config.nonet }
+  end
+  
+  def lodestone_update
+    doc = lodestone_load
     
     extract_profile doc
     extract_classes doc
@@ -64,8 +68,10 @@ class Character < ActiveRecord::Base
     self.info[:classes] = info_classes
   end
   
-  def lodestone_link
-    return "http://na.finalfantasyxiv.com/lodestone/character/#{lodestone_id}/"
+  def lodestone_link(subpage=nil, page=0)
+    url = "http://na.finalfantasyxiv.com/lodestone/character/#{lodestone_id}/"
+    url += "#{subpage}/" if subpage
+    url += "?page=#{page}" if page
   end
   
   def to_param
