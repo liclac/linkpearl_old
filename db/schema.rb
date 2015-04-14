@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412111817) do
+ActiveRecord::Schema.define(version: 20150414100304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(version: 20150412111817) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "world"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.text     "bio"
     t.integer  "user_id"
     t.datetime "synced_at"
+    t.json     "info",                   default: {}, null: false
   end
 
   add_index "characters", ["user_id"], name: "index_characters_on_user_id", using: :btree
