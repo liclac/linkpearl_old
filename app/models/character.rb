@@ -89,8 +89,13 @@ class Character < ActiveRecord::Base
       lodestone_id = link.attr('href').split('/').last
       name = link.text
       
-      ach = Achievement.find_or_create_by!(lodestone_id: lodestone_id) do |a|
-        a.name = name
+      ach = Achievement.find_or_initialize_by(lodestone_id: lodestone_id)
+      if ach.new_record?
+        ach.name = name
+        ach.save
+        
+        # Queue up a job to check the detail page for later execution
+        UpdateAchievementJob.perform_later(ach, self.lodestone_id)
       end
       
       unless self.achievements.exists?(ach)

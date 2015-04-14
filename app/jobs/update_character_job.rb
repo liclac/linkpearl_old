@@ -1,4 +1,4 @@
-class CharacterSyncJob < ActiveJob::Base
+class UpdateCharacterJob < ActiveJob::Base
   queue_as :default
 
   def perform(character)

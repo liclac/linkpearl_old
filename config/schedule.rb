@@ -25,3 +25,10 @@
 every '10 3,15 * * *' do
   runner 'QueueCharacterSyncsJob.perform_later'
 end
+
+# Check for new achievements once every 45 minutes; the schedule for
+# these updates on the Lodestone seems completely sporadic, so we can't
+# line it up any more accurately than this
+every 45.minutes do
+  runner 'QueueCharacterAchievementSyncsJob.perform_later'
+end
