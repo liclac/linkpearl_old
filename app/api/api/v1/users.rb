@@ -6,6 +6,9 @@ module API
       resource :users do
         desc "Returns the authenticated user" do
           success API::Entities::User
+          failure [
+            [401, "Missing authentication"],
+          ]
         end
         oauth2
         get 'me' do
