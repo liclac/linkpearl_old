@@ -36,6 +36,13 @@ module API
         desc: "Time of the last lodestone sync"
       }
       
+      expose :info, documentation: {
+        type: Hash, required: true, defaultValue: {
+          classes: { 'GLA' => { level: 10, exp: 1337, exp_next: 10000 }},
+        },
+        desc: "Additional info from the Lodestone"
+      }
+      
       def self.entity_name() "Character" end
     end
   end
