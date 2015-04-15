@@ -9,6 +9,7 @@ module API
       
       mount API::V1::Characters
       mount API::V1::Groups
+      mount API::V1::Users
     end
   end
 end
