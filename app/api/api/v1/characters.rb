@@ -46,6 +46,21 @@ module API
         get ':id' do
           present get_character(params[:id]), with: API::Entities::Character
         end
+        
+        desc "Returns the character's achievements" do
+          success API::Entities::Achievement
+          failure [
+            [404, "The character does not exist", API::Entities::Error],
+          ]
+        end
+        params do
+          requires :id, type: Integer, desc: "ID or Lodestone ID"
+        end
+        get ':id/achievements' do
+          @character = get_character(params[:id])
+          @achievements = @character.achievements.order(:lodestone_id)
+          present @achievements, with: API::Entities::Achievement
+        end
       end
     end
   end
