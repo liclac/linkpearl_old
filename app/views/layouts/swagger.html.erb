@@ -29,7 +29,7 @@
               $('pre code').each(function (i, e) {
                 hljs.highlightBlock(e);
               });
-              $('.footer h4').html($('.footer h4').html().replace('/swagger_doc', '').replace(':80', ''));
+              $('.footer h4').html($('.footer h4').html().replace('/swagger_doc', '').replace(/:(80|443)/, ''));
             },
             onFailure: function (data) {
               log("Unable to Load SwaggerUI");
