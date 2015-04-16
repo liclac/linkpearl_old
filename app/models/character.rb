@@ -88,14 +88,12 @@ class Character < ActiveRecord::Base
         
         # Queue up a job to check the detail page for later execution
         LodestoneUpdateJob.perform_later(ach, self.lodestone_id)
-      end
-      
-      unless self.achievements.exists?(ach.id)
-        self.achievements.push ach
-        imported += 1
-      else
+      elsif self.achievements.exists?(ach.id)
         break
       end
+      
+      self.achievements.push ach
+      imported += 1
     end
     
     imported
