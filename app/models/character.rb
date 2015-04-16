@@ -87,7 +87,9 @@ class Character < ActiveRecord::Base
         ach.save
         
         # Queue up a job to check the detail page for later execution
-        LodestoneUpdateJob.perform_later(ach, self.lodestone_id)
+        # (not when running tests; it'd slow everything to a crawl)
+        LodestoneUpdateJob.perform_later(ach, self.lodestone_id) \
+          unless Rails.env.test?
       elsif self.achievements.exists?(ach.id)
         break
       end
