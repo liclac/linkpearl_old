@@ -4,6 +4,10 @@ class LodestoneUpdateJob < ActiveJob::Base
   # Ignore jobs queued for deleted records
   rescue_from ActiveJob::DeserializationError, with: -> {}
   
+  # Ignore HTTP errors; they're usually due to privacy settings
+  # (And everything will be retried on a schedule anyways...)
+  rescue_from OpenURI::HTTPError, with: -> {}
+  
   # Quietly back off and retry if the connection pool is exhausted
   rescue_from Timeout::Error do
     retry_job
