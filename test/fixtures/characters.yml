@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  lodestone_id: 
-  first_name: MyText
-  last_name: MyText
-  world: MyText
+emi_katapow:
+  lodestone_id: 7248246
+  first_name: Emi
+  last_name: Katapow
+  world: Ultros
+  user: uppfinnarn
 
-two:
-  lodestone_id: 
-  first_name: MyText
-  last_name: MyText
-  world: MyText
+yoshida_eee:
+  lodestone_id: 7806252
+  first_name: Yoshida
+  last_name: Eee
+  world: Chocobo
+  user: yoshi-p

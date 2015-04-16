@@ -3,9 +3,7 @@
 one:
   name: MyString
   time: 2015-04-03 15:51:52
-  only_on: 2015-04-03
 
 two:
   name: MyString
   time: 2015-04-03 15:51:52
-  only_on: 2015-04-03

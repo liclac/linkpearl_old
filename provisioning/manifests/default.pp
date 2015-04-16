@@ -20,10 +20,12 @@ class { 'postgresql::server': }
 package { 'postgresql-server-dev-all': ensure => present }
 
 # Create the linkpearl database
-postgresql::server::db { 'linkpearl_development':
-    user => 'linkpearl',
-    password => 'linkpearl',
+postgresql::server::db { 'linkpearl':
+  user => 'linkpearl',
+  password => 'linkpearl',
 }
+postgresql::server::database { 'linkpearl_development': owner => 'linkpearl' }
+postgresql::server::database { 'linkpearl_test': owner => 'linkpearl' }
 
 # Let the vagrant user access the linkpearl db
 # This lets runserver work without passwords involved
@@ -36,11 +38,11 @@ postgresql::server::database_grant { 'vagrant':
 
 # Install NodeJS and npm
 class { 'nodejs':
-    manage_repo => true,
-    node_pkg => 'nodejs',
-    npm_pkg => 'npm',
-    dev_pkg => 'nodejs-dev',
-    dev_package => true,
+  manage_repo => true,
+  node_pkg => 'nodejs',
+  npm_pkg => 'npm',
+  dev_pkg => 'nodejs-dev',
+  dev_package => true,
 }
 package { 'nodejs-legacy': ensure => present }
 package { 'npm': ensure => present }
