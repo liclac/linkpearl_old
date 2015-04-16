@@ -1,5 +1,3 @@
-require 'open-uri'
-
 module LodestoneLoadable
   extend ActiveSupport::Concern
   
@@ -11,6 +9,8 @@ module LodestoneLoadable
       
       url = lodestone_link(*args)
       res = connection.get url, headers: headers
+      raise LodestoneError unless res.status == 200
+      
       Nokogiri::HTML(res.body) { |config| config.nonet }
     end
   end

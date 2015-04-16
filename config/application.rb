@@ -26,9 +26,15 @@ module Linkpearl
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     
-    # Autoreload API files too
+    # Autoload API files too
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    
+    # Autoload some more
+    ['errors'].each do |d|
+      config.paths.add File.join('app', d), glob: File.join('**', '*.rb')
+      config.autoload_paths += Dir[Rails.root.join('app', d)]
+    end
     
     # Send CORS headers
     config.middleware.insert_before 0, "Rack::Cors" do
