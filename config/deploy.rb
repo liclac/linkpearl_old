@@ -47,6 +47,8 @@ namespace :deploy do
       execute "sudo restart linkpearl"
     end
   end
+  
+  after :finished, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
