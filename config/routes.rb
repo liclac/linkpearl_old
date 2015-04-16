@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   use_doorkeeper do
     controllers :applications => 'oauth/applications'
@@ -39,6 +41,11 @@ Rails.application.routes.draw do
   # REST API
   mount API::Root => '/api'
   get '/api' => redirect('/api/swagger')
+  
+  # Sidekiq monitoring
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

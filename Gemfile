@@ -75,6 +75,8 @@ gem 'hashie-forbidden_attributes'
 
 # Send CORS headers
 gem 'rack-cors', :require => 'rack/cors'
+# Needed for Sidekiq's UI
+gem 'sinatra', :require => nil
 
 # Environment variables in a file
 # gem 'dotenv-rails'
