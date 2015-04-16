@@ -33,11 +33,27 @@ class Character < ActiveRecord::Base
     Nokogiri::HTML(open(url, headers)) { |config| config.nonet }
   end
   
-  def lodestone_update
-    doc = lodestone_load
+  def lodestone_update(type_=nil)
+    type = type_ == nil ? nil : type_.to_sym
     
-    extract_profile doc
-    extract_classes doc
+    if type == :achievements
+      
+      page = 0
+      loop do
+        page += 1
+        doc = lodestone_load 'achievement', page
+        imported = import_achievements doc
+        break if imported == 0
+      end
+      
+    else
+      
+      doc = lodestone_load
+      
+      extract_profile doc
+      extract_classes doc
+      
+    end
     
     # Allow 'Character.find(...).lodestone_update.save!'
     self
@@ -69,19 +85,6 @@ class Character < ActiveRecord::Base
     self.info[:classes] = info_classes
   end
   
-  def lodestone_achievements_update
-    page = 0
-    loop do
-      page += 1
-      doc = lodestone_load 'achievement', page
-      imported = import_achievements doc
-      break if imported == 0
-    end
-    
-    # Allow 'Character.find(...).lodestone_achievements_update.save!'
-    self
-  end
-  
   def import_achievements(doc)
     imported = 0
     
@@ -95,7 +98,7 @@ class Character < ActiveRecord::Base
         ach.save
         
         # Queue up a job to check the detail page for later execution
-        UpdateAchievementJob.perform_later(ach, self.lodestone_id)
+        LodestoneUpdateJob.perform_later(ach, self.lodestone_id)
       end
       
       unless self.achievements.exists?(ach)
