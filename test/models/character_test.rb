@@ -22,7 +22,7 @@ class CharacterTest < ActiveSupport::TestCase
       assert_equal c.achievements.length, 244
       
       a = Achievement.find_by_name! "Green Eyes"
-      assert c.achievements.exists? a
+      assert c.achievements.exists? a.id
     end
   end
 end
