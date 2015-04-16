@@ -1,8 +1,15 @@
 class LodestoneUpdateJob < ActiveJob::Base
   queue_as :default
   
-  CONNECTION_POOL = ConnectionPool.new(:size => 5, :timeout => 10) { Faraday.new }
+  # Ignore jobs queued for deleted records
+  rescue_from ActiveJob::DeserializationError, with: -> {}
   
+  # Quietly back off and retry if the connection pool is exhausted
+  rescue_from Timeout::Error do
+    retry_job
+  end
+  
+  CONNECTION_POOL = ConnectionPool.new(:size => 3, :timeout => 3) { Faraday.new }
   def perform(thing, *args)
     CONNECTION_POOL.with do |connection|
       thing.lodestone_update(*args, connection: connection)
