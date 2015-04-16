@@ -26,10 +26,8 @@ class Character < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
-  def lodestone_update(type_=nil)
-    type = type_ == nil ? nil : type_.to_sym
-    
-    if type == :achievements
+  def lodestone_update(type=nil)
+    if type == 'achievements'
       
       page = 0
       loop do
