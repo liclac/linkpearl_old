@@ -1,17 +1,10 @@
 require 'open-uri'
 
 class Achievement < ActiveRecord::Base
+  include LodestoneLoadable
+  
   validates :lodestone_id, presence: true
   has_and_belongs_to_many :character
-  
-  def lodestone_load(c_lid)
-    headers = {
-      'User-Agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18"
-    }
-    url = lodestone_link(c_lid)
-    
-    Nokogiri::HTML(open(url, headers)) { |config| config.nonet }
-  end
   
   # c_lid = Character Lodestone ID
   def lodestone_update(c_lid)

@@ -1,6 +1,8 @@
 require 'open-uri'
 
 class Character < ActiveRecord::Base
+  include LodestoneLoadable
+  
   ABBREVIATIONS = {
     'GLA' => 'Gladiator', 'PGL' => 'Pugilist',
     'MRD' => 'Marauder', 'LNC' => 'Lancer',
@@ -22,15 +24,6 @@ class Character < ActiveRecord::Base
   
   def name
     "#{self.first_name} #{self.last_name}"
-  end
-  
-  def lodestone_load(subpage=nil, page=0)
-    headers = {
-      'User-Agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18"
-    }
-    url = lodestone_link(subpage, page)
-    
-    Nokogiri::HTML(open(url, headers)) { |config| config.nonet }
   end
   
   def lodestone_update(type_=nil)
