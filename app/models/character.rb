@@ -99,10 +99,11 @@ class Character < ActiveRecord::Base
     imported
   end
   
-  def lodestone_link(subpage=nil, page=0)
+  def lodestone_link(subpage=nil, page=nil)
     url = "http://na.finalfantasyxiv.com/lodestone/character/#{lodestone_id}/"
     url += "#{subpage}/" if subpage
     url += "?page=#{page}" if page
+    url
   end
   
   def to_param
