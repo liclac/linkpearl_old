@@ -93,6 +93,8 @@ class Character < ActiveRecord::Base
       unless self.achievements.exists?(ach.id)
         self.achievements.push ach
         imported += 1
+      else
+        break
       end
     end
     
