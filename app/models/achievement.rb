@@ -5,8 +5,8 @@ class Achievement < ActiveRecord::Base
   has_and_belongs_to_many :character
   
   # c_lid = Character Lodestone ID
-  def lodestone_update(c_lid)
-    doc = lodestone_load c_lid
+  def lodestone_update(c_lid, **kwargs)
+    doc = lodestone_load c_lid, **kwargs
     e = doc.css('.achievement_txt').first
     
     # THIS IS AWFUL

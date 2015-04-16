@@ -24,13 +24,13 @@ class Character < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
-  def lodestone_update(type=nil)
+  def lodestone_update(type=nil, **kwargs)
     if type == 'achievements'
       
       page = 0
       loop do
         page += 1
-        doc = lodestone_load 'achievement', page
+        doc = lodestone_load 'achievement', page, **kwargs
         imported = import_achievements doc
         break if imported == 0
       end

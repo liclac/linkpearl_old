@@ -53,6 +53,8 @@ gem 'cancancan', '~> 1.10'
 # And then OAuth (2.0 atm) for the API
 gem 'doorkeeper'
 
+# Fancy HTTP library
+gem 'faraday'
 # Wanna scrape HTML
 gem 'nokogiri'
 
