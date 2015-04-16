@@ -7,7 +7,7 @@ class CharacterTest < ActiveSupport::TestCase
   
   test "lodestone update" do
     VCR.use_cassette 'lodestone_emi' do
-      c = Character.find_by_lodestone_id! 7248246
+      c = characters(:emi)
       c.lodestone_update
       assert_equal c.first_name, "Emi"
       assert_equal c.last_name, "Katapow"
@@ -17,7 +17,7 @@ class CharacterTest < ActiveSupport::TestCase
   
   test "lodestone update achievements" do
     VCR.use_cassette 'lodestone_emi' do
-      c = Character.find_by_lodestone_id! 7248246
+      c = characters(:emi)
       c.lodestone_update 'achievements'
       assert_equal c.achievements.length, 244
       

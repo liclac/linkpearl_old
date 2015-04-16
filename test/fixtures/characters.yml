@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-emi_katapow:
+emi:
   lodestone_id: 7248246
   first_name: Emi
   last_name: Katapow
   world: Ultros
   user: uppfinnarn
 
-yoshida_eee:
+yoshi:
   lodestone_id: 7806252
   first_name: Yoshida
   last_name: Eee
