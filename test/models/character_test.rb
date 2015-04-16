@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class CharacterTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  
   test "lodestone update" do
     VCR.use_cassette 'lodestone_emi' do
       c = characters(:emi)
@@ -23,6 +19,15 @@ class CharacterTest < ActiveSupport::TestCase
       
       a = Achievement.find_by_name! "Green Eyes"
       assert c.achievements.exists? a.id
+    end
+  end
+  
+  test "achievements are private" do
+    VCR.use_cassette 'lodestone_yoshi' do
+      c = characters(:yoshi)
+      assert_raises LodestoneError do
+        c.lodestone_update 'achievements'
+      end
     end
   end
 end
