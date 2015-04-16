@@ -6,7 +6,7 @@ class CharacterTest < ActiveSupport::TestCase
   # end
   
   test "lodestone update" do
-    VCR.use_cassette 'lodestone' do
+    VCR.use_cassette 'lodestone_emi' do
       c = Character.find_by_lodestone_id(7248246)
       c.lodestone_update
       assert_equal c.first_name, "Emi"
