@@ -92,7 +92,7 @@ class Character < ActiveRecord::Base
         LodestoneUpdateJob.perform_later(ach, self.lodestone_id)
       end
       
-      unless self.achievements.exists?(ach)
+      unless self.achievements.exists?(ach.id)
         self.achievements.push ach
         imported += 1
       end
