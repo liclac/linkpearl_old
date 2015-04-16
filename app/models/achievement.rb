@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class Achievement < ActiveRecord::Base
   include LodestoneLoadable
   

@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class Character < ActiveRecord::Base
   include LodestoneLoadable
   
