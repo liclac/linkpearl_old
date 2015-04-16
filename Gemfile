@@ -36,6 +36,8 @@ gem 'thin'
 gem 'sidekiq'
 # Fancy Crontab management
 gem 'whenever', :require => false
+# Reporting to New Relic
+gem 'newrelic_rpm'
 
 # Use Bootstrap as our UI framework of choice
 gem 'bootstrap-sass', '~> 3.3.4'
