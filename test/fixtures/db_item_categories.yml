@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lodestone_id: 1
+  name: MyString
+  parent_id: 
+  attr1: MyString
+  attr2: MyString
+  attr3: MyString
+
+two:
+  lodestone_id: 1
+  name: MyString
+  parent_id: 
+  attr1: MyString
+  attr2: MyString
+  attr3: MyString

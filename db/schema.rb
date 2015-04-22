@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416081042) do
+ActiveRecord::Schema.define(version: 20150422165805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,41 @@ ActiveRecord::Schema.define(version: 20150416081042) do
 
   add_index "characters_groups", ["character_id"], name: "index_characters_groups_on_character_id", using: :btree
   add_index "characters_groups", ["group_id"], name: "index_characters_groups_on_group_id", using: :btree
+
+  create_table "db_item_categories", force: :cascade do |t|
+    t.integer  "lodestone_id"
+    t.string   "name"
+    t.string   "attr1"
+    t.string   "attr2"
+    t.string   "attr3"
+    t.integer  "parent_id"
+    t.datetime "synced_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "db_item_categories", ["parent_id"], name: "index_db_item_categories_on_parent_id", using: :btree
+
+  create_table "db_items", force: :cascade do |t|
+    t.string   "lodestone_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "ilvl"
+    t.string   "classes"
+    t.integer  "level"
+    t.decimal  "attr1"
+    t.decimal  "attr2"
+    t.decimal  "attr3"
+    t.json     "stats"
+    t.boolean  "unique"
+    t.boolean  "untradable"
+    t.integer  "category_id"
+    t.datetime "synced_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "db_items", ["category_id"], name: "index_db_items_on_category_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "group_id"
@@ -159,6 +194,8 @@ ActiveRecord::Schema.define(version: 20150416081042) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "characters", "users"
+  add_foreign_key "db_item_categories", "db_item_categories", column: "parent_id"
+  add_foreign_key "db_items", "db_item_categories", column: "category_id"
   add_foreign_key "rsvps", "characters"
   add_foreign_key "rsvps", "events"
 end
