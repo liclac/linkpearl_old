@@ -52,3 +52,22 @@ package { 'libsqlite3-dev': ensure => present }
 class { 'rbenv': }
 rbenv::plugin { 'sstephenson/ruby-build': }
 rbenv::build { '2.2.0': global => true }
+
+# Install Java for ElasticSearch
+package { 'openjdk-7-jdk': ensure => present }
+
+# Install ElasticSearch
+apt::source { 'elasticsearch':
+  location    => 'http://packages.elasticsearch.org/elasticsearch/1.5/debian',
+  release     => 'stable',
+  key         => '46095ACC8548582C1A2699A9D27D666CD88E42B4',
+  key_server  => 'pgp.mit.edu',
+  include_src => false,
+  include_deb => true,
+} ~>
+package { 'elasticsearch': ensure => present } ~>
+service { 'elasticsearch':
+  ensure => running,
+  enable => true,
+  require => Package['openjdk-7-jdk'],
+}
