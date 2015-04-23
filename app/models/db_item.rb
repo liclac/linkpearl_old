@@ -5,9 +5,14 @@ class DBItem < ActiveRecord::Base
   
   def lodestone_update(**kwargs)
     doc = lodestone_load **kwargs
+    extract_version doc
     extract_categories doc
     extract_general doc
     extract_stats doc
+  end
+  
+  def extract_version(doc)
+    self.version = doc.css('#eorzea_db .area_footer .right.pt2').first.text.strip.split(' ').last
   end
   
   def extract_categories(doc)
