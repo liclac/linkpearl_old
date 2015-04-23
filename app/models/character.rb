@@ -1,6 +1,9 @@
 class Character < ActiveRecord::Base
   include LodestoneLoadable
   
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   ABBREVIATIONS = {
     'GLA' => 'Gladiator', 'PGL' => 'Pugilist',
     'MRD' => 'Marauder', 'LNC' => 'Lancer',
@@ -115,4 +118,14 @@ class Character < ActiveRecord::Base
   def to_s
     "#{self.first_name} #{self.last_name} on #{self.world}"
   end
+  
+  def as_indexed_json(options={})
+    as_json(
+      only: [:first_name, :last_name, :world, :bio],
+      methods: [:name],
+    )
+  end
+  
+  # ElasticSearch Configuration
+  settings index: { number_of_shards: 1 }
 end
