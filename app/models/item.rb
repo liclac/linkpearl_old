@@ -77,7 +77,16 @@ class Item < ActiveRecord::Base
   end
   
   def as_indexed_json(options={})
-    as_json(only: [:name, :description])
+    as_json(
+      only: [ :name, :description,
+        :classes, :level, :unique, :untradable,
+        :created_at, :synced_at, :version
+      ],
+      include: [ category: {
+        only: [ :name ],
+        include: [ parent: { only: [ :name ] } ],
+      }],
+    )
   end
   
   # ElasticSearch Configuration

@@ -121,7 +121,10 @@ class Character < ActiveRecord::Base
   
   def as_indexed_json(options={})
     as_json(
-      only: [:first_name, :last_name, :world, :bio],
+      only: [
+        :first_name, :last_name, :world, :bio,
+        :created_at, :synced_at,
+      ],
       methods: [:name],
     )
   end
