@@ -37,15 +37,13 @@ postgresql::server::database_grant { 'vagrant':
 }
 
 # Install NodeJS and npm
-class { 'nodejs':
-  manage_repo => true,
-  node_pkg => 'nodejs',
-  npm_pkg => 'npm',
-  dev_pkg => 'nodejs-dev',
-  dev_package => true,
+apt::source { 'nodesource':
+  location => 'https://deb.nodesource.com/node',
+  key => '9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280',
 }
-package { 'nodejs-legacy': ensure => present }
-package { 'npm': ensure => present }
+package { 'nodejs': ensure => present, require => Apt::Source['nodesource'] }
+package { 'nodejs-legacy': ensure => present, require => Apt::Source['nodesource'] }
+package { 'npm': ensure => present, require => Apt::Source['nodesource'] }
 
 # Install Ruby and gem build dependencies
 package { 'libssl-dev': ensure => present }
