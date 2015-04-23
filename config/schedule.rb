@@ -26,9 +26,19 @@ every '10 3,15 * * *' do
   runner "QueueUpdatesJob.perform_later('character')"
 end
 
-# Check for new achievements once every 45 minutes; the schedule for
+# Check for new achievements once every hour; the schedule for
 # these updates on the Lodestone seems completely sporadic, so we can't
 # line it up any more accurately than this
 every :hour do
   runner "QueueUpdatesJob.perform_later('character', 'achievements')"
+end
+
+# Check for dropped sync jobs and new game patches every 6 hours
+every 6.hours do
+  runner "UpdateStaleDataJob.perform_later"
+end
+
+# Also check for newly added items to the database every 6 hours
+every 6.hours do
+  runner "PullItemsJob.perform_later"
 end
