@@ -1,7 +1,7 @@
 class CreateDBItemCategories < ActiveRecord::Migration
   def change
     create_table :db_item_categories do |t|
-      t.integer :lodestone_id
+      t.string :lodestone_id
       t.string :name
       
       t.string :attr1
@@ -13,7 +13,5 @@ class CreateDBItemCategories < ActiveRecord::Migration
       t.timestamp :synced_at
       t.timestamps null: false
     end
-    
-    add_foreign_key :db_item_categories, :db_item_categories, column: :parent_id
   end
 end

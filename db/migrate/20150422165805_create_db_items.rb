@@ -22,7 +22,5 @@ class CreateDBItems < ActiveRecord::Migration
       t.timestamp :synced_at
       t.timestamps null: false
     end
-    
-    add_foreign_key :db_items, :db_item_categories, column: :category_id
   end
 end

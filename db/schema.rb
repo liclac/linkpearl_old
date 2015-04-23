@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150422165805) do
   add_index "characters_groups", ["group_id"], name: "index_characters_groups_on_group_id", using: :btree
 
   create_table "db_item_categories", force: :cascade do |t|
-    t.integer  "lodestone_id"
+    t.string   "lodestone_id"
     t.string   "name"
     t.string   "attr1"
     t.string   "attr2"
@@ -194,8 +194,6 @@ ActiveRecord::Schema.define(version: 20150422165805) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "characters", "users"
-  add_foreign_key "db_item_categories", "db_item_categories", column: "parent_id"
-  add_foreign_key "db_items", "db_item_categories", column: "category_id"
   add_foreign_key "rsvps", "characters"
   add_foreign_key "rsvps", "events"
 end

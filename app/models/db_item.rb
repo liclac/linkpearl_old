@@ -20,15 +20,16 @@ class DBItem < ActiveRecord::Base
     cat1 = DBItemCategory.find_or_create_by! lodestone_id: query['category2'] do |c|
       c.name = link1.text.strip
     end
-    cat2 = DBItemCategory.find_or_create_by! lodestone_id: query['category3'] do |c|
+    cat2 = DBItemCategory.find_or_create_by! lodestone_id: [query['category2'], query['category3']].join('.') do |c|
       c.name = link2.text.strip
       c.parent = cat1
-      
-      attr_names = doc.css('.parameter_name')
-      c.attr1 = attr_names[0].text.strip if attr_names.length > 0
-      c.attr2 = attr_names[1].text.strip if attr_names.length > 1
-      c.attr3 = attr_names[2].text.strip if attr_names.length > 2
     end
+    
+    attr_names = doc.css('.parameter_name')
+    cat2.attr1 = attr_names[0].text.strip if attr_names.length > 0
+    cat2.attr2 = attr_names[1].text.strip if attr_names.length > 1
+    cat2.attr3 = attr_names[2].text.strip if attr_names.length > 2
+    cat2.save!
     
     self.category = cat2
   end
