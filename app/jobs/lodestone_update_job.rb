@@ -13,7 +13,7 @@ class LodestoneUpdateJob < ActiveJob::Base
     retry_job
   end
   
-  CONNECTION_POOL = ConnectionPool.new(:size => 3, :timeout => 3) { Faraday.new }
+  CONNECTION_POOL = ConnectionPool.new(:size => 5, :timeout => 3) { Faraday.new }
   def perform(thing, *args)
     CONNECTION_POOL.with do |connection|
       thing.lodestone_update(*args, connection: connection)
