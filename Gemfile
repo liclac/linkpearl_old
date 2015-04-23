@@ -83,6 +83,10 @@ gem 'sinatra', :require => nil
 # Environment variables in a file
 # gem 'dotenv-rails'
 
+# ElasticSearch integration for fast DB searches
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 # Bower packages, yay
 source 'https://rails-assets.org' do
   # Fancy select boxes

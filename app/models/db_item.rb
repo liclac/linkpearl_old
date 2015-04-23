@@ -1,6 +1,9 @@
 class DBItem < ActiveRecord::Base
   belongs_to :category, class_name: 'DBItemCategory'
   
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   include LodestoneLoadable
   
   def lodestone_update(**kwargs)
@@ -72,4 +75,11 @@ class DBItem < ActiveRecord::Base
   def lodestone_link
     "http://na.finalfantasyxiv.com/lodestone/playguide/db/item/#{lodestone_id}/"
   end
+  
+  def as_indexed_json(options={})
+    as_json(only: [:name, :description])
+  end
+  
+  # ElasticSearch Configuration
+  settings index: { number_of_shards: 1 }
 end

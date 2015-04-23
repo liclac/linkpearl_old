@@ -102,6 +102,19 @@ GEM
       warden (~> 1.2.3)
     doorkeeper (2.1.4)
       railties (>= 3.2)
+    elasticsearch (1.0.8)
+      elasticsearch-api (= 1.0.7)
+      elasticsearch-transport (= 1.0.7)
+    elasticsearch-api (1.0.7)
+      multi_json
+    elasticsearch-model (0.1.7)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.7)
+    elasticsearch-transport (1.0.7)
+      faraday
+      multi_json
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.7)
@@ -337,6 +350,8 @@ DEPENDENCIES
   capistrano-rbenv
   devise
   doorkeeper
+  elasticsearch-model
+  elasticsearch-rails
   faraday
   foreman
   grape
