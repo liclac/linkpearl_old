@@ -6,7 +6,7 @@ class UpdateStaleDataJob < ActiveJob::Base
   def perform()
     load_game_version
     
-    update_db_items
+    update_items
   end
   
   def load_game_version
@@ -14,10 +14,10 @@ class UpdateStaleDataJob < ActiveJob::Base
     @ver = doc.css('#eorzea_db .area_footer .right.pt2').first.text.strip.split(' ').last
   end
   
-  def update_db_items
+  def update_items
     # Update items with data from previous patches, and ones that have never
     # been synced, usually indicating that the sync job was somehow dropped
-    DBItem.where('version != ? OR version IS NULL OR synced_at IS NULL', @ver).find_each do |item|
+    Item.where('version != ? OR version IS NULL OR synced_at IS NULL', @ver).find_each do |item|
       LodestoneUpdateJob.perform_later item
     end
   end

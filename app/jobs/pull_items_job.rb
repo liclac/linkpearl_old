@@ -18,7 +18,7 @@ class PullItemsJob < ActiveJob::Base
     doc.css('.ic_link_txt').each do |box|
       link = box.css('> a').first
       lodestone_id = link.attr('href').split('/').last
-      item = DBItem.find_or_initialize_by lodestone_id: lodestone_id
+      item = Item.find_or_initialize_by lodestone_id: lodestone_id
       
       # Break if we already have this item - this is way too much data to
       # reimport all the time, especially on a schedule... (8000+ items)
@@ -31,10 +31,10 @@ class PullItemsJob < ActiveJob::Base
       link2 = breadcrumbs[-1]
       query = Rack::Utils.parse_query URI(link2.attr('href')).query
       
-      cat1 = DBItemCategory.find_or_create_by! lodestone_id: query['category2'] do |c|
+      cat1 = ItemCategory.find_or_create_by! lodestone_id: query['category2'] do |c|
         c.name = link1.text.strip
       end
-      cat2 = DBItemCategory.find_or_create_by! lodestone_id: [query['category2'], query['category3']].join('.') do |c|
+      cat2 = ItemCategory.find_or_create_by! lodestone_id: [query['category2'], query['category3']].join('.') do |c|
         c.name = link2.text.strip
         c.parent = cat1
       end

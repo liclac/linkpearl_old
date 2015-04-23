@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423090715) do
+ActiveRecord::Schema.define(version: 20150423140347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,22 @@ ActiveRecord::Schema.define(version: 20150423090715) do
   add_index "characters_groups", ["character_id"], name: "index_characters_groups_on_character_id", using: :btree
   add_index "characters_groups", ["group_id"], name: "index_characters_groups_on_group_id", using: :btree
 
-  create_table "db_item_categories", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
+    t.integer  "group_id"
+    t.string   "name"
+    t.time     "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_categories", force: :cascade do |t|
     t.string   "lodestone_id"
     t.string   "name"
     t.string   "attr1"
@@ -74,9 +89,9 @@ ActiveRecord::Schema.define(version: 20150423090715) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "db_item_categories", ["parent_id"], name: "index_db_item_categories_on_parent_id", using: :btree
+  add_index "item_categories", ["parent_id"], name: "index_item_categories_on_parent_id", using: :btree
 
-  create_table "db_items", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string   "lodestone_id"
     t.string   "name"
     t.text     "description"
@@ -96,22 +111,7 @@ ActiveRecord::Schema.define(version: 20150423090715) do
     t.string   "version"
   end
 
-  add_index "db_items", ["category_id"], name: "index_db_items_on_category_id", using: :btree
-
-  create_table "events", force: :cascade do |t|
-    t.integer  "group_id"
-    t.string   "name"
-    t.time     "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.text     "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false

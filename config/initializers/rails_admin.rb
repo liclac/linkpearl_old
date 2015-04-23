@@ -38,7 +38,7 @@ RailsAdmin.config do |config|
     'User',
     'Character', 'Achievement',
     'Group', 'Event', 'RSVP',
-    'DBItemCategory', 'DBItem',
+    'ItemCategory', 'Item',
     'Doorkeeper::Application',
   ]
 end

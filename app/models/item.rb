@@ -1,5 +1,5 @@
-class DBItem < ActiveRecord::Base
-  belongs_to :category, class_name: 'DBItemCategory'
+class Item < ActiveRecord::Base
+  belongs_to :category, class_name: 'ItemCategory'
   
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -25,10 +25,10 @@ class DBItem < ActiveRecord::Base
     link2 = breadcrumbs[-1]
     query = Rack::Utils.parse_query URI(link2.attr('href')).query
     
-    cat1 = DBItemCategory.find_or_create_by! lodestone_id: query['category2'] do |c|
+    cat1 = ItemCategory.find_or_create_by! lodestone_id: query['category2'] do |c|
       c.name = link1.text.strip
     end
-    cat2 = DBItemCategory.find_or_create_by! lodestone_id: [query['category2'], query['category3']].join('.') do |c|
+    cat2 = ItemCategory.find_or_create_by! lodestone_id: [query['category2'], query['category3']].join('.') do |c|
       c.name = link2.text.strip
       c.parent = cat1
     end

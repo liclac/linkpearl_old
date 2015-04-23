@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class DBItemTest < ActiveSupport::TestCase
+class ItemTest < ActiveSupport::TestCase
   test "a unique weapon" do
-    VCR.use_cassette 'db_items/aiw_sword' do
-      i = DBItem.new lodestone_id: '695c329d011'
+    VCR.use_cassette 'items/aiw_sword' do
+      i = Item.new lodestone_id: '695c329d011'
       i.lodestone_update
       
       assert_equal "Arms", i.category.parent.name
@@ -34,8 +34,8 @@ class DBItemTest < ActiveSupport::TestCase
   end
   
   test "a normal shield" do
-    VCR.use_cassette 'db_items/wootz_shield' do
-      i = DBItem.new lodestone_id: 'a0998dadcc1'
+    VCR.use_cassette 'items/wootz_shield' do
+      i = Item.new lodestone_id: 'a0998dadcc1'
       i.lodestone_update
       
       assert_equal "Armor", i.category.parent.name
@@ -66,8 +66,8 @@ class DBItemTest < ActiveSupport::TestCase
   end
   
   test "a token item" do
-    VCR.use_cassette 'db_items/cs_atma' do
-      i = DBItem.new lodestone_id: '16cbb02efd1'
+    VCR.use_cassette 'items/cs_atma' do
+      i = Item.new lodestone_id: '16cbb02efd1'
       i.lodestone_update
       
       assert_equal "Atma of the Maiden", i.name
