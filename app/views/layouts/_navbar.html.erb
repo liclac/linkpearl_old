@@ -56,6 +56,18 @@
         </li>
         <% end %>
       </ul>
+      
+      <form class="navbar-form navbar-right" role="search" action="<%= search_path %>" method="GET">
+        <div class="form-group">
+          <div class="input-group">
+            <input name="q" type="text" class="form-control" placeholder="Search" value="<%= params[:q] %>" />
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
+          </div>
+        </div>
+      </form>
+      
     </div>
   </div>
 </nav>

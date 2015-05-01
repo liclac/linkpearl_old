@@ -1,0 +1,18 @@
+<h1>Search: "<%= params[:q] %>"</h1>
+
+<div class="list-group">
+  <% @results.records.records.to_a.each do |thing| %>
+    <%= link_to thing, class: 'list-group-item' do %>
+      <small class="text-muted">
+        <%= thing.class %>
+        <% if thing.respond_to? :category %>
+          <% if thing.category.parent %> &gt; <%= thing.category.parent.name %> <% end %>
+          &gt; <%= thing.category.name %>
+        <% end %>
+      </small>
+      <h4 class="list-group-item-heading"><%= thing.name %></h4>
+    <% end %>
+  <% end %>
+</div>
+
+<%= @blah %>

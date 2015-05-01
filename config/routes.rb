@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   # DATABASE DATABASE, JUST LIVING IN THE DATABASE
   resources :items, only: [:index, :show]
   
+  # And search for everything in one place
+  get 'search' => 'search#index'
+  
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
