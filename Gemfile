@@ -87,6 +87,9 @@ gem 'sinatra', :require => nil
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
+# Slug URLs done right
+gem 'friendly_id', '~> 5.1.0'
+
 # Bower packages, yay
 source 'https://rails-assets.org' do
   # Fancy select boxes

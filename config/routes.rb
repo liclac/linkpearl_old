@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     end
   end
   
+  # DATABASE DATABASE, JUST LIVING IN THE DATABASE
+  resources :items, only: [:index, :show]
+  
   # Admin UI
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   

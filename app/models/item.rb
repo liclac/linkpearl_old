@@ -1,6 +1,9 @@
 class Item < ActiveRecord::Base
   belongs_to :category, class_name: 'ItemCategory'
   
+  include FriendlyId
+  friendly_id :name, use: :slugged
+  
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   
@@ -80,13 +83,17 @@ class Item < ActiveRecord::Base
     as_json(
       only: [ :name, :description,
         :classes, :level, :unique, :untradable,
-        :created_at, :synced_at, :version
+        :created_at, :synced_at, :version, :slug
       ],
       include: [ category: {
         only: [ :name ],
         include: [ parent: { only: [ :name ] } ],
       }],
     )
+  end
+  
+  def should_generate_new_friendly_id?
+    name_changed? || super
   end
   
   # ElasticSearch Configuration
