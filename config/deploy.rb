@@ -44,10 +44,10 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # The linkpearl account has permission to sudo this one specific command
-      # execute "sudo restart linkpearl"
-      within release_path do
-        execute "cd '#{release_path}'; (test -f tmp/pids/unicorn.pid && export P=$(cat tmp/pids/unicorn.pid) && kill -USR2 $P && kill -QUIT $P) || (killall ruby 2>/dev/null; sudo start linkpearl)"
-      end
+      execute "sudo restart linkpearl"
+      # within release_path do
+      #   execute "cd '#{release_path}'; (test -f tmp/pids/unicorn.pid && export P=$(cat tmp/pids/unicorn.pid) && kill -USR2 $P && kill -QUIT $P) || (killall ruby 2>/dev/null; sudo start linkpearl)"
+      # end
     end
   end
   

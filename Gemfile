@@ -31,8 +31,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Easier management of different processes
 gem 'foreman'
 # Use Unicorn as the app server
-gem 'unicorn'
-gem 'unicorn-rails'
+# gem 'unicorn'
+# gem 'unicorn-rails'
+# Use Thin as the app server
+gem 'thin'
 # Sidekiq for background job processing
 gem 'sidekiq'
 # Fancy Crontab management
