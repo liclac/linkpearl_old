@@ -45,7 +45,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # The linkpearl account has permission to sudo this one specific command
       # execute "sudo restart linkpearl"
-      execute "(test -f tmp/pids/unicorn.pid && kill -USR1 $(cat tmp/pids/unicorn.pid) && kill -QUIT $(cat tmp/pids/unicorn.pid)) || (killall ruby 2>/dev/null; sudo restart linkpearl)"
+      execute "(test -f tmp/pids/unicorn.pid && kill -USR1 $(cat tmp/pids/unicorn.pid) && kill -QUIT $(cat tmp/pids/unicorn.pid)) || (killall ruby 2>/dev/null; sudo start linkpearl)"
     end
   end
   
