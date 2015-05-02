@@ -46,7 +46,7 @@ namespace :deploy do
       # The linkpearl account has permission to sudo this one specific command
       # execute "sudo restart linkpearl"
       within release_path do
-        execute "cd '#{release_path}'; (test -f tmp/pids/unicorn.pid && kill -USR2 $(cat tmp/pids/unicorn.pid) && kill -QUIT $(cat tmp/pids/unicorn.pid)) || (killall ruby 2>/dev/null; sudo start linkpearl)"
+        execute "cd '#{release_path}'; (test -f tmp/pids/unicorn.pid && export P=$(cat tmp/pids/unicorn.pid) && kill -USR2 $P && kill -QUIT $P) || (killall ruby 2>/dev/null; sudo start linkpearl)"
       end
     end
   end
