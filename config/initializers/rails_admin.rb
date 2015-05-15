@@ -39,6 +39,7 @@ RailsAdmin.config do |config|
     'Character', 'Achievement',
     'Group', 'Event', 'RSVP',
     'ItemCategory', 'Item',
+    'Poll', 'PollItem',
     'Doorkeeper::Application',
   ]
 end

@@ -11,8 +11,26 @@
 
 <div class="col-md-9 col-md-pull-3">
   <% if @group.message %>
-    <h3>Message</h3>
     <p><%= markdown(@group.message) %></p>
+    <hr />
+  <% end %>
+  
+  <% @group.polls.open.each do |poll| %>
+    <%= bootstrap_form_tag do |form| %>
+    <div class="panel panel-info">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left">Poll: <%= poll.title %></h3>
+        <small class="text-muted pull-right"><%= distance_of_time_in_words(Time.now, poll.closes_at) %> remaining</small>
+      </div>
+      <div class="list-group">
+        <% poll.poll_items.each do |item| %>
+          <div class="list-group-item">
+            <%= form.radio_button :option, item.id, label: item.text %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
   <% end %>
   
   <h3>Members</h3>

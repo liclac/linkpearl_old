@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501103616) do
+ActiveRecord::Schema.define(version: 20150511191211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,28 @@ ActiveRecord::Schema.define(version: 20150501103616) do
   add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
+  create_table "poll_items", force: :cascade do |t|
+    t.integer  "poll_id"
+    t.integer  "position"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "poll_items", ["poll_id"], name: "index_poll_items_on_poll_id", using: :btree
+
+  create_table "polls", force: :cascade do |t|
+    t.integer  "belongs_to_id"
+    t.string   "belongs_to_type"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "closes_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "polls", ["belongs_to_type", "belongs_to_id"], name: "index_polls_on_belongs_to_type_and_belongs_to_id", using: :btree
+
   create_table "rsvps", force: :cascade do |t|
     t.integer  "character_id"
     t.integer  "event_id"
@@ -209,6 +231,7 @@ ActiveRecord::Schema.define(version: 20150501103616) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "characters", "users"
+  add_foreign_key "poll_items", "polls"
   add_foreign_key "rsvps", "characters"
   add_foreign_key "rsvps", "events"
 end
